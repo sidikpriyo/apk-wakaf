@@ -3,12 +3,18 @@
 Sistem penggalangan dana sosial untuk pimpinan wilayah muhammadiyah daerah istimewa yogyakarta menggunakan payment gateway sebagai metode pembayaran non-tunai.
 
 ## PHP Dependencies
+
 - Laravel 8
 
 ## JS Dependencies
-- 
+
+- axios
+- laravel-mix
+- lodash
+- postcss
 
 ## Requirement
+
 - PHP
 - Composer
 - NPM
@@ -94,7 +100,19 @@ Disini akan dijelaskan bagaimana cara installasi aplikasi.
 
 ### Cara Setup Environment
 
-Masuk ke commandline lalu ketikan `cp .env.example`
+Silahkan copy contoh file enviroment:
+
+```
+cp .env.example .env
+```
+
+Lalu buat unik key dengan mengetikan:
+
+```
+php artisan key:generate
+```
+
+Setelah itu buka file `.env` untuk seting database dll.
 
 ### Cara Installasi Database
 
@@ -127,4 +145,3 @@ Untuk membuat tabel dari awal dan menambahkan data inisiasi:
 ```
 php artisan migrate:fresh --seed
 ```
-
