@@ -4,14 +4,25 @@ Sistem penggalangan dana sosial untuk pimpinan wilayah muhammadiyah daerah istim
 
 ## PHP Dependencies
 
-- Laravel 8
+- laravel/laravel
+- laravel-frontend-presets/tall
+- laravel/breeze
+- livewire/livewire
 
 ## JS Dependencies
 
-- axios
+- @tailwindcss/forms
+- @tailwindcss/typography
+- alpinejs
+- autoprefixer
 - laravel-mix
-- lodash
+- laravel-mix-tailwind
 - postcss
+- postcss-import
+- resolve-url-loader
+- sass
+- sass-loader
+- tailwindcss
 
 ## Requirement
 
