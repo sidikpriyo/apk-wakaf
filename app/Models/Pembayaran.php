@@ -9,5 +9,7 @@ class Pembayaran extends Model
 {
     use HasFactory;
 
+    protected $table = "pembayaran";
+
     protected $guarded = [];
 }
