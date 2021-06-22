@@ -5,6 +5,7 @@ Sistem penggalangan dana sosial untuk pimpinan wilayah muhammadiyah daerah istim
 ## PHP Dependencies
 
 - Laravel 8
+- laravel-frontend-presets/tall
 
 ## JS Dependencies
 
