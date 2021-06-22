@@ -2,8 +2,6 @@
 
 Sistem penggalangan dana sosial untuk pimpinan wilayah muhammadiyah daerah istimewa yogyakarta menggunakan payment gateway sebagai metode pembayaran non-tunai.
 
-## TOC
-
 ## PHP Dependencies
 - Laravel 8
 
@@ -26,8 +24,6 @@ Disini akan dijelaskan bagaimana cara menggunakan kode.
 
 Masuk ke command line lalu ketikan `git clone`
 
-Contoh:
-
 ```
 git clone git@github.com:sidikpriyo/apk-wakaf.git
 ```
@@ -35,8 +31,6 @@ git clone git@github.com:sidikpriyo/apk-wakaf.git
 ### Cara pindah branch:
 
 Masuk ke command line lalu ketikan `git checkout nama_branch`
-
-Contoh:
 
 ```
 git checkout dev
@@ -46,8 +40,6 @@ git checkout dev
 
 Masuk ke commandline lalu ketikan `git pull`
 
-Contoh:
-
 ```
 git pull
 ```
@@ -55,8 +47,6 @@ git pull
 ### Cara menggabungkan kode
 
 Masuk ke command line lalu ketikan `git merge nama_branch`
-
-Contoh:
 
 ```
 git merge main
@@ -70,8 +60,6 @@ Disini akan dijelaskan cara install dependensi
 
 Masuk ke command line lalu ketikan `composer install`
 
-Contoh:
-
 ```
 composer install
 ```
@@ -79,8 +67,6 @@ composer install
 ### Cara Install JS Dependensi Menggunakan NPM
 
 Masuk ke command line lalu ketikan `npm install`
-
-Contoh:
 
 ```
 npm install
@@ -90,8 +76,6 @@ npm install
 
 Masuk ke command line lalu ketikan `npm run dev`
 
-Contoh:
-
 ```
 npm run dev
 ```
@@ -99,8 +83,6 @@ npm run dev
 ### Cara Masuk Mode Production
 
 Masuk ke command line lalu ketikan `npm run prod`
-
-Contoh:
 
 ```
 npm run prod
