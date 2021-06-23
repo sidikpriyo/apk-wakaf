@@ -16,7 +16,7 @@ class CreatePembayaransTable extends Migration
         Schema::create('pembayaran', function (Blueprint $table) {
             $table->id();
             $table->string('nama', 50);
-            $table->string('kode', 10);
+            $table->string('kode', 20);
             $table->unsignedBigInteger('jenis_pembayaran_id');
             $table->timestamps();
 

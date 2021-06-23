@@ -16,7 +16,7 @@ class CreateJenisPembayaransTable extends Migration
         Schema::create('jenis_pembayaran', function (Blueprint $table) {
             $table->id();
             $table->string('nama', 50);
-            $table->string('kode', 10);
+            $table->string('kode', 20);
             $table->timestamps();
         });
     }
