@@ -1,9 +1,9 @@
 <header>
     <div class="container mx-auto px-4">
-        <div class="flex justify-between items-center border-b py-8">
+        <div class="flex justify-between items-center pt-12 pb-8">
             <div>
                 <h1 class="text-xl font-bold">Majelis Wakaf dan Kehartabendaan</h1>
-                <p class="text-gray-700">Pimpinan Wilayah Muhammadiyah DIY</p>
+                <p class="text-gray-700 text-lg">Pimpinan Wilayah Muhammadiyah DIY</p>
             </div>
             <div>
                 <a href="{{ route('login') }}" class="group flex">

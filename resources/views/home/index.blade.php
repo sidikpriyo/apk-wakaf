@@ -1,6 +1,6 @@
 @extends('layouts.home')
 
-@section('content')
+@section('body')
     <section class="relative py-20">
         <div class="container mx-auto px-4">
             <div class="items-center flex flex-wrap">
