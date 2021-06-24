@@ -27,31 +27,59 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 
-<body class="text-gray-700 antialiased">
+<body class="text-gray-700 antialiased bg-blueGray-50">
     @include('layouts.dashboard.sidebar')
-    <div class="relative md:ml-64 bg-blueGray-50">
+    <div class="relative md:ml-64 bg-blueGray-50 h-screen">
         <nav
-            class="absolute top-0 left-0 w-full z-10 bg-transparent md:flex-row md:flex-nowrap md:justify-start flex items-center p-4">
-            <div class="w-full mx-autp items-center flex justify-between md:flex-nowrap flex-wrap md:px-10 px-4">
+            class="absolute top-0 left-0 w-full z-10 bg-transparent md:flex-row md:flex-nowrap md:justify-start flex items-center py-4">
+            <div class="w-full mx-autp items-center flex justify-between md:flex-nowrap flex-wrap md:px-10 py-4">
                 <a class="text-white text-sm uppercase hidden lg:inline-block font-semibold"
                     href="{{ route('dashboard') }}">Dashboard</a>
 
                 <ul class="flex-col md:flex-row list-none items-center hidden md:flex">
                     <div class="items-center flex">
-                        <span
-                            class="w-12 h-12 text-sm text-white bg-blueGray-200 inline-flex items-center justify-center rounded-full">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
-                                fill="currentColor">
-                                <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
-                                    clip-rule="evenodd" />
-                            </svg>
-                        </span>
+                        <x-dropdown align="right" width="48">
+                            <x-slot name="trigger">
+                                <button
+                                    class="flex space-x-4 items-center text-sm font-medium text-white hover:text-gray-200 focus:outline-none transition duration-150 ease-in-out">
+
+                                    <div class="text-right">
+                                        <p class="text-base font-bold">{{ Auth::user()->name }}</p>
+                                        <p class="text-sm">{{ Auth::user()->email }}</p>
+                                    </div>
+                                    
+                                    <span
+                                        class="w-12 h-12 text-sm text-white bg-blueGray-200 inline-flex items-center justify-center rounded-full">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
+                                            fill="currentColor">
+                                            <path fill-rule="evenodd"
+                                                d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
+                                                clip-rule="evenodd" />
+                                        </svg>
+                                    </span>
+
+                                </button>
+                            </x-slot>
+
+                            <x-slot name="content">
+                                <!-- Authentication -->
+                                <form method="POST" action="{{ route('logout') }}">
+                                    @csrf
+
+                                    <x-dropdown-link :href="route('logout')" onclick="event.preventDefault();
+                                                        this.closest('form').submit();">
+                                        {{ __('Log Out') }}
+                                    </x-dropdown-link>
+                                </form>
+                            </x-slot>
+                        </x-dropdown>
+
                     </div>
                 </ul>
             </div>
         </nav>
         <!-- Header -->
-        <div class="relative bg-teal-600 md:pt-32 pb-32 pt-12">
+        <div class="bg-teal-600 md:pt-32 pb-32 pt-12">
             <div class="px-4 md:px-10 mx-auto w-full">
                 <div>
                     @yield('header')
@@ -63,5 +91,4 @@
         </div>
     </div>
 </body>
-
 </html>
