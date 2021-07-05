@@ -25,6 +25,12 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    @stack('styles')
+    <style>
+        [x-cloak] {
+            display: none;
+        }
+    </style>
 </head>
 
 <body class="text-gray-700 antialiased bg-blueGray-50">
@@ -92,6 +98,7 @@
             @yield('body')
         </div>
     </div>
+    @stack('scripts')
 </body>
 
 </html>
