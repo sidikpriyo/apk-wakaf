@@ -22,14 +22,14 @@ Route::middleware(['auth'])->group(function () {
 });
 
 // Pengelola
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth', 'role:pengelola'])->group(function () {
 });
 
 // Donatur
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth', 'role:donatur'])->group(function () {
 });
 
 // Lembaga
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth', 'role:lembaga'])->group(function () {
 });
 require __DIR__ . '/auth.php';
