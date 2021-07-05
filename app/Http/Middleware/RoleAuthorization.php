@@ -22,18 +22,13 @@ class RoleAuthorization
             $user = auth()->user();
 
             // check user role
-            if (!$user || !in_array($user->role, $roles)) {
+            if (!in_array($user->role, $roles)) {
                 throw new Exception("You are not authorised to view this page...");
             }
         } catch (\Throwable $th) {
-            $this->unauthorized($th);
+            return redirect()->route('dashboard')->with(['status' => $th->getMessage()]);
         }
 
         return $next($request);
-    }
-
-    private function unauthorized(Exception $e)
-    {
-        return redirect()->route('dashboard')->with(['status' => $e->getMessage()]);
     }
 }
