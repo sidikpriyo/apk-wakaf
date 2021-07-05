@@ -15,4 +15,9 @@ class HomeController extends Controller
     {
         return view('dashboard.index');
     }
+
+    public function setting(Request $request)
+    {
+        return view('setting.index');
+    }
 }

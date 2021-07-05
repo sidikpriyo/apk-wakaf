@@ -18,6 +18,18 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'home'])->name('hom
 // User
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'dashboard'])->name('dashboard');
+    Route::get('/setting', [App\Http\Controllers\HomeController::class, 'setting'])->name('setting');
 });
 
+// Pengelola
+Route::middleware(['auth'])->group(function () {
+});
+
+// Donatur
+Route::middleware(['auth'])->group(function () {
+});
+
+// Lembaga
+Route::middleware(['auth'])->group(function () {
+});
 require __DIR__ . '/auth.php';
