@@ -8,6 +8,7 @@ Sistem penggalangan dana sosial untuk pimpinan wilayah muhammadiyah daerah istim
 - laravel-frontend-presets/tall
 - laravel/breeze
 - livewire/livewire
+- MedicOneSystems/livewire-datatables
 
 ## JS Dependencies
 

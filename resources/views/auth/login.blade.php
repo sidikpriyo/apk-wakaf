@@ -99,8 +99,7 @@
                     <div class="w-full px-2 sm:px-6">
                         <p class="w-full text-gray-700 -mb-4">
                             Tidak punya akun?
-                            <a class="text-teal-600 hover:text-teal-700 no-underline"
-                                href="{{ route('register') }}">
+                            <a class="text-teal-600 hover:text-teal-700 no-underline" href="{{ route('register') }}">
                                 Daftar
                             </a>
                         </p>
@@ -188,7 +187,7 @@
                         Selamat Datang
                     </h3>
                     <p class="text-xl text-white leading-normal pt-3 xl:w-10/12">
-                        Silahkan masuk untuk memulai wakaf atau <a href="{{route('register')}}" class="underline">daftar</a> untuk pengguna baru.
+                        Silahkan masuk untuk memulai wakaf tunai / donasi.
                     </p>
                 </div>
                 <div class="z-20 absolute bottom-0 left-0 pb-3 pl-3 text-white">

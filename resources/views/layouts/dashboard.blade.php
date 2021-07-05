@@ -25,6 +25,12 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    @stack('styles')
+    <style>
+        [x-cloak] {
+            display: none;
+        }
+    </style>
 </head>
 
 <body class="text-gray-700 antialiased bg-blueGray-50">
@@ -34,7 +40,9 @@
             class="absolute top-0 left-0 w-full z-10 bg-transparent md:flex-row md:flex-nowrap md:justify-start flex items-center py-4">
             <div class="w-full mx-autp items-center flex justify-between md:flex-nowrap flex-wrap md:px-10 py-4">
                 <a class="text-white text-sm uppercase hidden lg:inline-block font-semibold"
-                    href="{{ route('dashboard') }}">Dashboard</a>
+                    href="{{ url()->current() }}">
+                    {{ \Illuminate\Support\Facades\Route::currentRouteName() }}
+                </a>
 
                 <ul class="flex-col md:flex-row list-none items-center hidden md:flex">
                     <div class="items-center flex">
@@ -47,7 +55,7 @@
                                         <p class="text-base font-bold">{{ Auth::user()->name }}</p>
                                         <p class="text-sm">{{ Auth::user()->email }}</p>
                                     </div>
-                                    
+
                                     <span
                                         class="w-12 h-12 text-sm text-white bg-blueGray-200 inline-flex items-center justify-center rounded-full">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
@@ -86,9 +94,10 @@
                 </div>
             </div>
         </div>
-        <div class="px-4 md:px-10 mx-auto w-full -m-24">
+        <div class="px-4 md:px-10 mx-auto w-full -m-24 pb-24">
             @yield('body')
         </div>
     </div>
+    @stack('scripts')
 </body>
 </html>
