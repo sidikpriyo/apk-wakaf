@@ -14,10 +14,11 @@ class TabelLembaga extends LivewireDatatable
 
     public $exportable = true;
     public $hideable = 'select';
+    public $beforeTableSlot = 'pengelola.lembaga.button';
 
     public function builder()
     {
-        return User::query()->pengelola();
+        return User::query()->lembaga();
     }
 
     public function columns()

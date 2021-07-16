@@ -2,7 +2,7 @@
 
 @section('body')
     <div class="flex space-x-8 mb-8">
-        <a href="{{ route('user.donatur') }}"
+        <a href="{{ route('donatur.index') }}"
             class="bg-white h-36 rounded-lg shadow w-full flex items-center justify-center">
             <div class="flex items-center space-x-2">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
@@ -13,7 +13,7 @@
                 <span class="font-semibold">Donatur</span>
             </div>
         </a>
-        <a href="{{ route('user.lembaga') }}"
+        <a href="{{ route('lembaga.index') }}"
             class="bg-white h-36 rounded-lg shadow w-full flex items-center justify-center">
             <div class="flex items-center space-x-2">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
