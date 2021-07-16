@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [App\Http\Controllers\HomeController::class, 'home'])->name('home');
 
 // User
-Route::prefix('dashboard')->middleware(['auth'])->group(function () {
+Route::prefix('dashboard')->middleware(['auth', 'verified'])->group(function () {
     Route::get('/', [App\Http\Controllers\HomeController::class, 'dashboard'])->name('dashboard');
     Route::get('/setting', [App\Http\Controllers\HomeController::class, 'setting'])->name('setting');
 });
@@ -34,4 +34,5 @@ Route::prefix('donatur')->middleware(['auth', 'role:donatur'])->group(function (
 // Lembaga
 Route::prefix('lembaga')->middleware(['auth', 'role:lembaga'])->group(function () {
 });
+
 require __DIR__ . '/auth.php';
