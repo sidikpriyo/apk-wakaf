@@ -61,9 +61,9 @@ class LembagaController extends Controller
         return redirect()->route('lembaga.index');
     }
 
-    public function destroy(User $user)
+    public function destroy(User $lembaga)
     {
-        $user->delete();
+        $lembaga->delete();
 
         return redirect()->route('lembaga.index');
     }

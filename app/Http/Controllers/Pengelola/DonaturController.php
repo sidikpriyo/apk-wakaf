@@ -59,9 +59,9 @@ class DonaturController extends Controller
         return redirect()->route('donatur.index');
     }
 
-    public function destroy(User $user)
+    public function destroy(User $donatur)
     {
-        $user->delete();
+        $donatur->delete();
 
         return redirect()->route('donatur.index');
     }
