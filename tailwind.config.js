@@ -96,7 +96,7 @@ module.exports = {
   },
 
   plugins: [
-    function ({ addComponents }) {
+    plugin(function ({ addComponents }) {
       addComponents({
         ".container": {
           maxWidth: "100%",
@@ -114,8 +114,10 @@ module.exports = {
           },
         },
       });
-    },
-    require("@tailwindcss/forms"),
+    }),
+    require("@tailwindcss/forms")({
+      strategy: "class",
+    }),
     require("@tailwindcss/typography"),
   ],
 };

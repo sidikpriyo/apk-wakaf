@@ -10,6 +10,14 @@
 
 @section('body')
     <div class="bg-white rounded-lg h-72 shadow-lg">
-        
+        <livewire:tabel-lembaga />
     </div>
 @endsection
+
+@push('scripts')
+    @livewireScripts
+@endpush
+
+@push('styles')
+    @livewireStyles
+@endpush
