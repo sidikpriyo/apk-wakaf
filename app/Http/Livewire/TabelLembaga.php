@@ -26,11 +26,12 @@ class TabelLembaga extends LivewireDatatable
         return [
             NumberColumn::name('id')
                 ->label('ID')
-                ->linkTo('pengelola/pengelola', 10)
+                ->linkTo('pengelola/lembaga', 10)
                 ->filterable(),
 
             Column::name('name')
                 ->searchable()
+                ->editable()
                 ->defaultSort('asc')
                 ->filterable(),
 
@@ -43,7 +44,9 @@ class TabelLembaga extends LivewireDatatable
 
             DateColumn::name('created_at')
                 ->label('Tanggal')
-                ->filterable()
+                ->filterable(),
+
+            Column::delete()->label('Hapus'),
         ];
     }
 }

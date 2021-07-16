@@ -31,6 +31,7 @@ class TabelDonatur extends LivewireDatatable
 
             Column::name('name')
                 ->searchable()
+                ->editable()
                 ->defaultSort('asc')
                 ->filterable(),
 
@@ -43,7 +44,9 @@ class TabelDonatur extends LivewireDatatable
 
             DateColumn::name('created_at')
                 ->label('Tanggal')
-                ->filterable()
+                ->filterable(),
+
+            Column::delete()->label('Hapus'),
         ];
     }
 }

@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\Pengelola;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\DonaturRequest;
 use App\Models\User;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class DonaturController extends Controller
 {
@@ -18,27 +21,48 @@ class DonaturController extends Controller
         return view('pengelola.donatur.create');
     }
 
-    public function show()
+    public function show(User $donatur)
     {
-        return view('pengelola.donatur.show');
+        return view('pengelola.donatur.show', [
+            'donatur' => $donatur
+        ]);
     }
 
-    public function update(Request $request, User $user)
+    public function edit(User $donatur)
     {
-        $user->update($request->all());
+        return view('pengelola.donatur.edit', [
+            'donatur' => $donatur
+        ]);
+    }
+
+    public function update(DonaturRequest $request, User $donatur)
+    {
+        $donatur->update([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ]);
+
         return redirect()->back();
     }
 
-    public function store(Request $request)
+    public function store(DonaturRequest $request)
     {
-        User::create($request->all());
-        return redirect()->to('donatur.index');
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ]);
+
+        // event(new Registered($user));
+
+        return redirect()->route('donatur.index');
     }
 
     public function destroy(User $user)
     {
         $user->delete();
 
-        return redirect()->to('donatur.index');
+        return redirect()->route('donatur.index');
     }
 }
