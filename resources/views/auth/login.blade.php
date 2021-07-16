@@ -18,6 +18,7 @@
                   px-2
                   sm:px-0
                  ">
+                    <x-auth-validation-errors class="mb-4" :errors="$errors" />
                     <div class="w-full px-2 sm:px-6">
                         <div class="flex flex-col mt-8">
                             <label for="email" class="text-lg font-semibold leading-tight">Email</label>

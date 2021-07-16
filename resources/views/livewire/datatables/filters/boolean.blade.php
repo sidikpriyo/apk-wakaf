@@ -2,7 +2,7 @@
     <select
         x-ref="select"
         name="{{ $name }}"
-        class="m-1 text-sm leading-4 flex-grow form-select"
+        class="m-1 text-sm leading-4 flex-grow form-select rounded border-gray-300 border"
         wire:input="doBooleanFilter('{{ $index }}', $event.target.value)"
         x-on:input="$refs.select.value=''"
     >

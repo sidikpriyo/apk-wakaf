@@ -125,7 +125,7 @@
                                     d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" />
                             </svg>
                         </div>
-                        <h3 class="text-3xl font-semibold">Yuk, Wakaf Bersama Kami!</h3>
+                        <h3 class="text-3xl font-semibold">Wakaf Bersama Kami!</h3>
                         <p class="mt-4 text-lg leading-relaxed text-blueGray-500">
                             Kami menyediakan platform berbasis web untuk memudahkan anda dalam menunaikan wakaf.
                         </p>

@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,18 +14,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'home'])->name('home');
+Route::get('/', [\App\Http\Controllers\HomeController::class, 'home'])->name('home');
 
 // User
-Route::prefix('dashboard')->middleware(['auth'])->group(function () {
-    Route::get('/', [App\Http\Controllers\HomeController::class, 'dashboard'])->name('dashboard');
-    Route::get('/setting', [App\Http\Controllers\HomeController::class, 'setting'])->name('setting');
+Route::prefix('dashboard')->middleware(['auth', 'verified'])->group(function () {
+    Route::get('/', [\App\Http\Controllers\HomeController::class, 'dashboard'])->name('dashboard');
+    Route::get('/setting', [\App\Http\Controllers\HomeController::class, 'setting'])->name('setting');
 });
 
 // Pengelola
 Route::prefix('pengelola')->middleware(['auth', 'role:pengelola'])->group(function () {
-    Route::get('/donatur', [App\Http\Controllers\Pengelola\UserController::class, 'donatur'])->name('user.donatur');
-    Route::get('/lembaga', [App\Http\Controllers\Pengelola\UserController::class, 'lembaga'])->name('user.lembaga');
+    Route::resource('/lembaga', \App\Http\Controllers\Pengelola\LembagaController::class);
+    Route::resource('/donatur', \App\Http\Controllers\Pengelola\DonaturController::class);
 });
 
 // Donatur
@@ -34,4 +35,5 @@ Route::prefix('donatur')->middleware(['auth', 'role:donatur'])->group(function (
 // Lembaga
 Route::prefix('lembaga')->middleware(['auth', 'role:lembaga'])->group(function () {
 });
+
 require __DIR__ . '/auth.php';
