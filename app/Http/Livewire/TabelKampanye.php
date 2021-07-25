@@ -12,6 +12,7 @@ class TabelKampanye extends LivewireDatatable
 {
     public $exportable = true;
     public $hideable = 'select';
+    public $model = Kampanye::class;
     public $beforeTableSlot = 'pengelola.kampanye.button';
 
     public function builder()

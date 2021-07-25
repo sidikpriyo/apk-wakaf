@@ -11,6 +11,7 @@ class TabelJenisPembayaran extends LivewireDatatable
 {
     public $exportable = true;
     public $hideable = 'select';
+    public $model = JenisPembayaran::class;
     public $beforeTableSlot = 'pengelola.jenis-pembayaran.button';
 
     public function builder()

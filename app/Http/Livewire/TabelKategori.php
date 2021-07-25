@@ -11,6 +11,7 @@ class TabelKategori extends LivewireDatatable
 {
     public $exportable = true;
     public $hideable = 'select';
+    public $model = Kategori::class;
     public $beforeTableSlot = 'pengelola.kategori.button';
 
     public function builder()

@@ -14,6 +14,7 @@ class TabelDonatur extends LivewireDatatable
 
     public $exportable = true;
     public $hideable = 'select';
+    public $model = User::class;
     public $beforeTableSlot = 'pengelola.donatur.button';
 
     public function builder()
