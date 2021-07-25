@@ -126,6 +126,12 @@ php artisan key:generate
 
 Setelah itu buka file `.env` untuk seting database dll.
 
+### Cara Setup Public Disk
+
+```
+php artisan storage:link
+```
+
 ### Cara Installasi Database
 
 Berikut cara untuk setup database.
