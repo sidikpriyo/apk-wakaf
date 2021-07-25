@@ -23,8 +23,10 @@ class CreateKampanyesTable extends Migration
             $table->bigInteger('terkumpul')->default('0');
             $table->timestamp('tanggal_berakhir')->nullable();
             $table->unsignedBigInteger('lembaga_id');
+            $table->unsignedBigInteger('kategori_id');
             $table->timestamps();
 
+            $table->foreign('kategori_id')->references('id')->on('kategori')->onDelete('cascade');
             $table->foreign('lembaga_id')->references('id')->on('users')->onDelete('cascade');
         });
     }

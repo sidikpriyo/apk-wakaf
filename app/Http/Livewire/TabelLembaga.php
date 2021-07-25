@@ -32,7 +32,6 @@ class TabelLembaga extends LivewireDatatable
             Column::name('name')
                 ->searchable()
                 ->editable()
-                ->defaultSort('asc')
                 ->filterable(),
 
             Column::name('email')
@@ -45,8 +44,6 @@ class TabelLembaga extends LivewireDatatable
             DateColumn::name('created_at')
                 ->label('Tanggal')
                 ->filterable(),
-
-            Column::delete()->label('Hapus'),
         ];
     }
 }

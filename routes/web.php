@@ -26,6 +26,10 @@ Route::prefix('dashboard')->middleware(['auth', 'verified'])->group(function () 
 Route::prefix('pengelola')->middleware(['auth', 'role:pengelola'])->group(function () {
     Route::resource('/lembaga', \App\Http\Controllers\Pengelola\LembagaController::class);
     Route::resource('/donatur', \App\Http\Controllers\Pengelola\DonaturController::class);
+    Route::resource('/kategori', \App\Http\Controllers\Pengelola\KategoriController::class);
+    Route::resource('/status-pembayaran', \App\Http\Controllers\Pengelola\StatusPembayaranController::class);
+    Route::resource('/jenis-pembayaran', \App\Http\Controllers\Pengelola\JenisPembayaranController::class);
+    Route::resource('/kampanye', \App\Http\Controllers\Pengelola\KampanyeController::class);
 });
 
 // Donatur

@@ -21,7 +21,7 @@ class JenisPembayaranSeeder extends Seeder
             ],
             [
                 'nama' => 'Transfer Manual',
-                'kode' => 'trasnfer'
+                'kode' => 'transfer'
             ],
             [
                 'nama' => 'Payment Gateway',
