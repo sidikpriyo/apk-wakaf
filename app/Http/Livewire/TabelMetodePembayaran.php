@@ -32,6 +32,8 @@ class TabelMetodePembayaran extends LivewireDatatable
 
             Column::name('kode'),
 
+            Column::name('jenis.nama')->label('Jenis'),
+
             Column::delete()->label('Hapus')
         ];
     }

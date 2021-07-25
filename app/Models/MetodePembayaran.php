@@ -12,4 +12,9 @@ class MetodePembayaran extends Model
     protected $table = "pembayaran";
 
     protected $guarded = [];
+
+    public function jenis()
+    {
+        return $this->belongsTo(JenisPembayaran::class, 'jenis_pembayaran_id');
+    }
 }
