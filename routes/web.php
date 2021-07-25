@@ -29,6 +29,7 @@ Route::prefix('pengelola')->middleware(['auth', 'role:pengelola'])->group(functi
     Route::resource('/kategori', \App\Http\Controllers\Pengelola\KategoriController::class);
     Route::resource('/status-pembayaran', \App\Http\Controllers\Pengelola\StatusPembayaranController::class);
     Route::resource('/jenis-pembayaran', \App\Http\Controllers\Pengelola\JenisPembayaranController::class);
+    Route::resource('/metode-pembayaran', \App\Http\Controllers\Pengelola\MetodePembayaranController::class);
     Route::resource('/kampanye', \App\Http\Controllers\Pengelola\KampanyeController::class);
 });
 

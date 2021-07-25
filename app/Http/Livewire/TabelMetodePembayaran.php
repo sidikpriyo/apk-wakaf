@@ -2,21 +2,21 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\StatusPembayaran;
+use App\Models\MetodePembayaran;
 use Mediconesystems\LivewireDatatables\Column;
 use Mediconesystems\LivewireDatatables\Http\Livewire\LivewireDatatable;
 use Mediconesystems\LivewireDatatables\NumberColumn;
 
-class TabelStatusPembayaran extends LivewireDatatable
+class TabelMetodePembayaran extends LivewireDatatable
 {
     public $exportable = true;
     public $hideable = 'select';
-    public $model = StatusPembayaran::class;
-    public $beforeTableSlot = 'pengelola.status-pembayaran.button';
+    public $model = MetodePembayaran::class;
+    public $beforeTableSlot = 'pengelola.metode-pembayaran.button';
 
     public function builder()
     {
-        return StatusPembayaran::query();
+        return MetodePembayaran::query();
     }
 
     public function columns()
@@ -31,6 +31,8 @@ class TabelStatusPembayaran extends LivewireDatatable
                 ->editable(),
 
             Column::name('kode'),
+
+            Column::name('jenis.nama')->label('Jenis'),
 
             Column::delete()->label('Hapus')
         ];

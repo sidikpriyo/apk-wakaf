@@ -14,6 +14,7 @@ class TabelLembaga extends LivewireDatatable
 
     public $exportable = true;
     public $hideable = 'select';
+    public $model = User::class;
     public $beforeTableSlot = 'pengelola.lembaga.button';
 
     public function builder()

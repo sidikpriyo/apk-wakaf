@@ -17,7 +17,7 @@ class JenisPembayaranSeeder extends Seeder
         $items = [
             [
                 'nama' => 'Tunai',
-                'kode' => 'cash'
+                'kode' => 'tunai'
             ],
             [
                 'nama' => 'Transfer Manual',
