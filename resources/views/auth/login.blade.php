@@ -30,8 +30,8 @@
                      rounded
                      mt-2
                      text-gray-600
-                     focus:outline-none focus:border focus:border-teal-700
-                     dark:focus:border-teal-700
+                     focus:outline-none focus:border focus:border-blue-700
+                     dark:focus:border-blue-700
                      dark:border-gray-700
                      dark:bg-gray-800
                      dark:text-gray-400
@@ -48,8 +48,8 @@
                      rounded
                      mt-2
                      text-gray-600
-                     focus:outline-none focus:border focus:border-teal-700
-                     dark:focus:border-teal-700
+                     focus:outline-none focus:border focus:border-blue-700
+                     dark:focus:border-blue-700
                      dark:border-gray-700
                      dark:bg-gray-800
                      dark:text-gray-400
@@ -60,13 +60,13 @@
                         <div class="flex flex-row mt-5 items-center justify-between">
                             <div class="flex items-center">
                                 <input id="remember_me" type="checkbox"
-                                    class="rounded border-2 h-4 w-4 text-teal-600 transition duration-150 ease-in-out">
+                                    class="rounded border-2 h-4 w-4 text-blue-600 transition duration-150 ease-in-out">
                                 <label for="remember_me" class="ml-2 block text-sm leading-5 text-gray-900">
                                     Ingat saya
                                 </label>
                             </div>
                             <div class="text-sm leading-5">
-                                <a class="font-medium text-teal-600 hover:text-teal-500 focus:outline-none focus:underline transition ease-in-out duration-150"
+                                <a class="font-medium text-blue-600 hover:text-blue-500 focus:outline-none focus:underline transition ease-in-out duration-150"
                                     href="{{ route('password.request') }}">
                                     Lupa Kata Sandi?
                                 </a>
@@ -77,16 +77,16 @@
                         <button type="submit" class="
                     focus:ring-2
                     focus:ring-offset-2
-                    focus:ring-teal-600
-                    focus:bg-teal-800
+                    focus:ring-blue-600
+                    focus:bg-blue-800
                     focus:outline-none
                     w-full
                     sm:w-auto
-                    bg-teal-700
+                    bg-blue-700
                     transition
                     duration-150
                     ease-in-out
-                    hover:bg-teal-600
+                    hover:bg-blue-600
                     rounded
                     text-white
                     px-8
@@ -100,7 +100,7 @@
                     <div class="w-full px-2 sm:px-6">
                         <p class="w-full text-gray-700 -mb-4">
                             Tidak punya akun?
-                            <a class="text-teal-600 hover:text-teal-700 no-underline" href="{{ route('register') }}">
+                            <a class="text-blue-600 hover:text-blue-700 no-underline" href="{{ route('register') }}">
                                 Daftar
                             </a>
                         </p>
@@ -111,8 +111,8 @@
                  w-full
                  lg:w-1/2
                  bg-gradient-to-tl
-                 from-teal-500
-                 to-teal-600
+                 from-blue-500
+                 to-blue-600
                  px-2
                  py-40
                  sm:py-48 sm:px-12

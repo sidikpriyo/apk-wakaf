@@ -38,7 +38,7 @@
 
                             <div>
                                 <button
-                                    class="focus:ring-2 focus:ring-offset-2 focus:ring-teal-600 focus:bg-teal-800 focus:outline-none w-full sm:w-auto bg-teal-700 transition duration-150 ease-in-out hover:bg-teal-600 rounded text-white px-8 py-3 text-sm"
+                                    class="focus:ring-2 focus:ring-offset-2 focus:ring-blue-600 focus:bg-blue-800 focus:outline-none w-full sm:w-auto bg-blue-700 transition duration-150 ease-in-out hover:bg-blue-600 rounded text-white px-8 py-3 text-sm"
                                     type="submit">
                                     {{ __('Kirim Ulang Link Verifikasi') }}
                                 </button>
@@ -59,8 +59,8 @@
                  w-full
                  lg:w-1/2
                  bg-gradient-to-tl
-                 from-teal-500
-                 to-teal-600
+                 from-blue-500
+                 to-blue-600
                  px-2
                  py-40
                  sm:py-48 sm:px-12
