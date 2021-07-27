@@ -10,14 +10,27 @@ use Mediconesystems\LivewireDatatables\NumberColumn;
 
 class TabelDonasi extends LivewireDatatable
 {
+
     public $exportable = true;
     public $hideable = 'select';
     public $model = Donasi::class;
     public $beforeTableSlot = 'pengelola.donasi.button';
+    public $linkTo = 'pengelola/donasi';
+
+    public function __construct()
+    {
+        if (auth()->user()->role === 'lembaga') {
+            $this->beforeTableSlot = 'lembaga.donasi.button';
+            $this->linkTo = 'lembaga/donasi';
+        }
+    }
 
     public function builder()
     {
-        return Donasi::query();
+        $user = auth()->user();
+        return Donasi::query()->when($user->role === 'lembaga', function ($query) use ($user) {
+            $query->where('lembaga_id', '=', $user->id);
+        });
     }
 
     public function columns()
@@ -25,7 +38,7 @@ class TabelDonasi extends LivewireDatatable
         return [
             NumberColumn::name('id')
                 ->label('ID')
-                ->linkTo('pengelola/donasi', 10),
+                ->linkTo($this->linkTo, 10),
 
             Column::name('kampanye.nama')->label('Kampanye')->searchable()->defaultSort(),
 

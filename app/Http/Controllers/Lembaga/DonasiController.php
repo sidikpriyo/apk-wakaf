@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Pengelola;
+namespace App\Http\Controllers\Lembaga;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\DonasiRequest;
@@ -13,16 +13,16 @@ class DonasiController extends Controller
 {
     public function index()
     {
-        return view('pengelola.donasi.index');
+        return view('lembaga.donasi.index');
     }
 
     public function create()
     {
         // Init Data
-        $kampanye = Kampanye::get(['id', 'nama']);
+        $kampanye = Kampanye::where('lembaga_id', auth()->id())->get(['id', 'nama']);
         $donatur = User::donatur()->get(['id', 'name']);
 
-        return view('pengelola.donasi.create', [
+        return view('lembaga.donasi.create', [
             'kampanye' => $kampanye,
             'donatur' => $donatur,
         ]);
@@ -30,18 +30,26 @@ class DonasiController extends Controller
 
     public function show(Donasi $donasi)
     {
-        return view('pengelola.donasi.show', [
+        if ($donasi->kampanye()->first()->lembaga_id !== auth()->id()) {
+            return redirect()->route('lembaga-kampanye.index');
+        }
+
+        return view('lembaga.donasi.show', [
             'donasi' => $donasi
         ]);
     }
 
     public function edit(Donasi $donasi)
     {
+        if ($donasi->kampanye()->first()->lembaga_id !== auth()->id()) {
+            return redirect()->route('lembaga-kampanye.index');
+        }
+
         // Init Data
-        $kampanye = Kampanye::get(['id', 'nama']);
+        $kampanye = Kampanye::where('lembaga_id', auth()->id())->get(['id', 'nama']);
         $donatur = User::donatur()->get(['id', 'name']);
 
-        return view('pengelola.donasi.edit', [
+        return view('lembaga.donasi.edit', [
             'donasi' => $donasi,
             'kampanye' => $kampanye,
             'donatur' => $donatur,
@@ -59,13 +67,13 @@ class DonasiController extends Controller
     {
         Donasi::create($request->all());
 
-        return redirect()->route('pengelola-donasi.index');
+        return redirect()->route('lembaga-donasi.index');
     }
 
     public function destroy(Donasi $donasi)
     {
         $donasi->delete();
 
-        return redirect()->route('pengelola-donasi.index');
+        return redirect()->route('lembaga-donasi.index');
     }
 }

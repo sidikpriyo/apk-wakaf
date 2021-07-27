@@ -30,7 +30,7 @@ class KampanyeRequest extends FormRequest
             'deskripsi' => ['required', 'string'],
             'kebutuhan' => ['required', 'int'],
             'tanggal_berakhir' => ['required', 'date'],
-            'lembaga_id' => ['required', 'int'],
+            'lembaga_id' => ['sometimes', 'int'],
             'kategori_id' => ['required', 'int'],
         ];
     }

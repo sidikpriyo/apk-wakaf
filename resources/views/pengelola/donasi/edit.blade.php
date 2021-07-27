@@ -7,7 +7,7 @@
 @section('sidebar-body')
     <ul>
         <li class="mb-2 block text-sm text-gray-700 py-1.5 px-2 mx-4 hover:bg-gray-100 rounded">
-            <a href="{{ route('donasi.index') }}" aria-current="page"
+            <a href="{{ route('pengelola-donasi.index') }}" aria-current="page"
                 class="nuxt-link-exact-active nuxt-link-active">Beranda</a>
         </li>
     </ul>
@@ -16,7 +16,7 @@
 @section('body')
     <div class="bg-white rounded-lg border border-gray-200 p-6">
         <h2 class="font-semibold text-xl mb-6">Edit Donasi</h2>
-        <form action="{{ route('donasi.update', ['donasi' => $donasi->id]) }}" method="POST">
+        <form action="{{ route('pengelola-donasi.update', ['donasi' => $donasi->id]) }}" method="POST">
             @method('PATCH')
             @csrf
             <div>
@@ -55,7 +55,7 @@
 
             <div class="mt-6">
                 <button
-                    class="focus:ring-2 focus:ring-offset-2 focus:ring-teal-600 focus:bg-teal-800 focus:outline-none w-full sm:w-auto bg-teal-700 transition duration-150 ease-in-out hover:bg-teal-600 rounded text-white px-8 py-3 text-sm"
+                    class="focus:ring-2 focus:ring-offset-2 focus:ring-blue-600 focus:bg-blue-800 focus:outline-none w-full sm:w-auto bg-blue-700 transition duration-150 ease-in-out hover:bg-blue-600 rounded text-white px-8 py-3 text-sm"
                     type="submit">
                     {{ __('Ubah Data') }}
                 </button>
