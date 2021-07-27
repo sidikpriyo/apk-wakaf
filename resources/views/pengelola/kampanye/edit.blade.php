@@ -16,7 +16,7 @@
 @section('body')
     <div class="bg-white rounded-lg border border-gray-200 p-6">
 
-        {{ $error ?? '' }}
+        
         <h2 class="font-semibold text-xl mb-6">Edit Kampanye</h2>
         <form action="{{ route('kampanye.update', ['kampanye' => $kampanye->id]) }}" method="POST">
             @method('PATCH')
