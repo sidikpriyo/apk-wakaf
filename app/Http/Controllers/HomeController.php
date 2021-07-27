@@ -2,13 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kampanye;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
     public function home(Request $request)
     {
-        return view('home.index');
+        $kampanye = Kampanye::paginate(6);
+
+        return view('home.index', [
+            'kampanye' => $kampanye
+        ]);
     }
 
     public function dashboard(Request $request)

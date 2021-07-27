@@ -4,40 +4,14 @@
             <form method="POST" action="{{ route('login') }}"
                 class="w-full sm:mb-10 lg:w-1/2 flex justify-center bg-white dark:bg-gray-900">
                 @csrf
-                <div class="
-                  w-full
-                  sm:w-4/6
-                  md:w-3/6
-                  lg:w-2/3
-                  text-gray-800
-                  dark:text-gray-100
-                  mb-12
-                  sm:mb-0
-                  flex flex-col
-                  justify-center
-                  px-2
-                  sm:px-0
-                 ">
+                <div
+                    class="w-full sm:w-4/6 md:w-3/6 lg:w-2/3 text-gray-800 dark:text-gray-100 mb-12 sm:mb-0 flex flex-col justify-center px-2 sm:px-0">
                     <x-auth-validation-errors class="mb-4" :errors="$errors" />
                     <div class="w-full px-2 sm:px-6">
                         <div class="flex flex-col mt-8">
                             <label for="email" class="text-lg font-semibold leading-tight">Email</label>
                             <input autofocus="" value="" required="required" autocomplete="off" name="email"
-                                type="email" placeholder="Alamat Email" class="
-                     h-10
-                     px-2
-                     w-full
-                     rounded
-                     mt-2
-                     text-gray-600
-                     focus:outline-none focus:border focus:border-blue-700
-                     dark:focus:border-blue-700
-                     dark:border-gray-700
-                     dark:bg-gray-800
-                     dark:text-gray-400
-                     border-gray-300 border
-                     shadow
-                    ">
+                                type="email" placeholder="Alamat Email" class="h-10 px-2 w-full rounded mt-2 text-gray-600 focus:outline-none focus:border focus:border-blue-700 dark:focus:border-blue-700 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 border-gray-300 border shadow">
                         </div>
                         <div class="flex flex-col mt-5">
                             <label for="password" class="text-lg font-semibold fleading-tight">Kata Sandi</label>
