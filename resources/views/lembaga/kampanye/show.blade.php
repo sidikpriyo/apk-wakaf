@@ -7,7 +7,7 @@
 @section('sidebar-body')
     <ul>
         <li class="mb-2 block text-sm text-gray-700 py-1.5 px-2 mx-4 hover:bg-gray-100 rounded">
-            <a href="{{ route('pengelola-kampanye.index') }}" aria-current="page"
+            <a href="{{ route('lembaga-kampanye.index') }}" aria-current="page"
                 class="nuxt-link-exact-active nuxt-link-active">Beranda</a>
         </li>
     </ul>
@@ -77,7 +77,7 @@
         </dl>
 
         <div class="flex items-center space-x-1 justify-start p-6">
-            <a href="{{ route('pengelola-kampanye.edit', ['kampanye' => $kampanye->id]) }}"
+            <a href="{{ route('lembaga-kampanye.edit', ['kampanye' => $kampanye->id]) }}"
                 class="flex items-center space-x-2 px-3 border border-green-400 rounded-md bg-white text-green-500 text-xs leading-4 font-medium uppercase tracking-wider hover:bg-green-200 focus:outline-none">
                 <span>Edit Data</span>
                 <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current h-5 w-5 m-2" fill="none" viewBox="0 0 24 24"
@@ -86,11 +86,11 @@
                         d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                 </svg>
             </a>
-            <form method="POST" action="{{ route('pengelola-kampanye.destroy', ['kampanye' => $kampanye->id]) }}">
+            <form method="POST" action="{{ route('lembaga-kampanye.destroy', ['kampanye' => $kampanye->id]) }}">
                 @method('DELETE')
                 @csrf
 
-                <a :href="{{ route('pengelola-kampanye.destroy', ['kampanye' => $kampanye->id]) }}"
+                <a :href="{{ route('lembaga-kampanye.destroy', ['kampanye' => $kampanye->id]) }}"
                     onclick="event.preventDefault();this.closest('form').submit();"
                     class="cursor-pointer flex items-center space-x-2 px-3 border border-red-400 rounded-md bg-white text-red-500 text-xs leading-4 font-medium uppercase tracking-wider hover:bg-red-200 focus:outline-none">
                     <span>Hapus Data</span>

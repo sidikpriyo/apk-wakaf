@@ -14,10 +14,22 @@ class TabelKampanye extends LivewireDatatable
     public $hideable = 'select';
     public $model = Kampanye::class;
     public $beforeTableSlot = 'pengelola.kampanye.button';
+    public $linkTo = 'pengelola/donasi';
+
+    public function __construct()
+    {
+        if (auth()->user()->role === 'lembaga') {
+            $this->beforeTableSlot = 'lembaga.kampanye.button';
+            $this->linkTo = 'lembaga/kampanye';
+        }
+    }
 
     public function builder()
     {
-        return Kampanye::query();
+        $user = auth()->user();
+        return Kampanye::query()->when($user->role === 'lembaga', function ($query) use ($user) {
+            $query->where('lembaga_id', '=', $user->id);
+        });
     }
 
     public function columns()
@@ -25,7 +37,7 @@ class TabelKampanye extends LivewireDatatable
         return [
             NumberColumn::name('id')
                 ->label('ID')
-                ->linkTo('pengelola/kampanye', 10),
+                ->linkTo($this->linkTo, 10),
 
             Column::name('nama')
                 ->defaultSort()

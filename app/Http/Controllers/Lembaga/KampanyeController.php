@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Pengelola;
+namespace App\Http\Controllers\Lembaga;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\KampanyeRequest;
@@ -8,41 +8,45 @@ use App\Models\Kampanye;
 use App\Models\Kategori;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 
 class KampanyeController extends Controller
 {
     public function index()
     {
-        return view('pengelola.kampanye.index');
+        return view('lembaga.kampanye.index');
     }
 
     public function create()
     {
-        // Init Data
-        $lembaga = User::lembaga()->get(['id', 'name']);
         $kategori = Kategori::get(['id', 'nama']);
 
-        return view('pengelola.kampanye.create', [
-            'lembaga' => $lembaga,
+        return view('lembaga.kampanye.create', [
             'kategori' => $kategori,
         ]);
     }
 
     public function show(Kampanye $kampanye)
     {
-        return view('pengelola.kampanye.show', [
+        if ($kampanye->lembaga_id !== auth()->id()) {
+            return redirect()->route('lembaga-kampanye.index');
+        }
+
+        return view('lembaga.kampanye.show', [
             'kampanye' => $kampanye
         ]);
     }
 
     public function edit(Kampanye $kampanye)
     {
+        if ($kampanye->lembaga_id !== auth()->id()) {
+            return redirect()->route('lembaga-kampanye.index');
+        }
+
         // Init Data
         $lembaga = User::lembaga()->get(['id', 'name']);
         $kategori = Kategori::get(['id', 'nama']);
 
-        return view('pengelola.kampanye.edit', [
+        return view('lembaga.kampanye.edit', [
             'kampanye' => $kampanye,
             'lembaga' => $lembaga,
             'kategori' => $kategori,
@@ -58,9 +62,12 @@ class KampanyeController extends Controller
                 'deskripsi',
                 'kebutuhan',
                 'tanggal_berakhir',
-                'lembaga_id',
                 'kategori_id',
             ]);
+
+            $data = array_merge([
+                'lembaga_id' => auth()->id()
+            ], $data);
 
             if ($request->file('gambar')) {
                 $path = $request->file('gambar')->storePubliclyAs(
@@ -91,9 +98,12 @@ class KampanyeController extends Controller
                 'deskripsi',
                 'kebutuhan',
                 'tanggal_berakhir',
-                'lembaga_id',
                 'kategori_id',
             ]);
+
+            $data = array_merge([
+                'lembaga_id' => auth()->id()
+            ], $data);
 
             $path = $request->file('gambar')->storePubliclyAs(
                 'kampanye',
@@ -110,13 +120,13 @@ class KampanyeController extends Controller
             //throw $th;
         }
 
-        return redirect()->route('pengelola-kampanye.index');
+        return redirect()->route('lembaga-kampanye.index');
     }
 
     public function destroy(Kampanye $kampanye)
     {
         $kampanye->delete();
 
-        return redirect()->route('pengelola-kampanye.index');
+        return redirect()->route('lembaga-kampanye.index');
     }
 }

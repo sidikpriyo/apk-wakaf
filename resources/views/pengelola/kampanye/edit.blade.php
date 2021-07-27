@@ -7,7 +7,7 @@
 @section('sidebar-body')
     <ul>
         <li class="mb-2 block text-sm text-gray-700 py-1.5 px-2 mx-4 hover:bg-gray-100 rounded">
-            <a href="{{ route('kampanye.index') }}" aria-current="page"
+            <a href="{{ route('pengelola-kampanye.index') }}" aria-current="page"
                 class="nuxt-link-exact-active nuxt-link-active">Beranda</a>
         </li>
     </ul>
@@ -18,7 +18,7 @@
 
         
         <h2 class="font-semibold text-xl mb-6">Edit Kampanye</h2>
-        <form action="{{ route('kampanye.update', ['kampanye' => $kampanye->id]) }}" method="POST">
+        <form action="{{ route('pengelola-kampanye.update', ['kampanye' => $kampanye->id]) }}" method="POST">
             @method('PATCH')
             @csrf
             <div>

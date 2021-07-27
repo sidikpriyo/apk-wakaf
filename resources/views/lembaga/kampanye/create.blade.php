@@ -7,7 +7,7 @@
 @section('sidebar-body')
     <ul>
         <li class="mb-2 block text-sm text-gray-700 py-1.5 px-2 mx-4 hover:bg-gray-100 rounded">
-            <a href="{{ route('pengelola-kampanye.index') }}" aria-current="page"
+            <a href="{{ route('lembaga-kampanye.index') }}" aria-current="page"
                 class="nuxt-link-exact-active nuxt-link-active">Beranda</a>
         </li>
     </ul>
@@ -17,7 +17,7 @@
     <div class="bg-white rounded-lg border border-gray-200 p-6">
         <h2 class="font-semibold text-xl mb-6">Tambah Kampanye</h2>
 
-        <form action="{{ route('pengelola-kampanye.store') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('lembaga-kampanye.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div>
                 <x-label for="name" :value="__('Nama')" />
@@ -67,16 +67,6 @@
                 <x-select name="kategori_id" id="kategori_id">
                     @foreach ($kategori as $item)
                         <option value="{{ $item->id }}">{{ $item->nama }}</option>
-                    @endforeach
-                </x-select>
-            </div>
-
-            <div class="mt-4">
-                <x-label for="lembaga_id" :value="__('Lembaga')" />
-
-                <x-select name="lembaga_id" id="lembaga_id">
-                    @foreach ($lembaga as $item)
-                        <option value="{{ $item->id }}">{{ $item->name }}</option>
                     @endforeach
                 </x-select>
             </div>

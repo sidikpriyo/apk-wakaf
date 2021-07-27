@@ -7,7 +7,7 @@
 @section('sidebar-body')
     <ul>
         <li class="mb-2 block text-sm text-gray-700 py-1.5 px-2 mx-4 hover:bg-gray-100 rounded">
-            <a href="{{ route('pengelola-donasi.index') }}" aria-current="page"
+            <a href="{{ route('lembaga-donasi.index') }}" aria-current="page"
                 class="nuxt-link-exact-active nuxt-link-active">Beranda</a>
         </li>
     </ul>
@@ -17,7 +17,7 @@
     <div class="bg-white rounded-lg border border-gray-200 p-6">
         <h2 class="font-semibold text-xl mb-6">Tambah Donasi</h2>
 
-        <form action="{{ route('pengelola-donasi.store') }}" method="POST">
+        <form action="{{ route('lembaga-donasi.store') }}" method="POST">
             @csrf
             <div>
                 <x-label for="nominal" :value="__('Nominal')" />

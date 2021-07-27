@@ -30,8 +30,8 @@ Route::prefix('pengelola')->middleware(['auth', 'role:pengelola'])->group(functi
     Route::resource('/status-pembayaran', \App\Http\Controllers\Pengelola\StatusPembayaranController::class);
     Route::resource('/jenis-pembayaran', \App\Http\Controllers\Pengelola\JenisPembayaranController::class);
     Route::resource('/metode-pembayaran', \App\Http\Controllers\Pengelola\MetodePembayaranController::class);
-    Route::resource('/kampanye', \App\Http\Controllers\Pengelola\KampanyeController::class);
-    Route::resource('/donasi', \App\Http\Controllers\Pengelola\DonasiController::class);
+    Route::resource('/kampanye', \App\Http\Controllers\Pengelola\KampanyeController::class)->names('pengelola-kampanye');
+    Route::resource('/donasi', \App\Http\Controllers\Pengelola\DonasiController::class)->names('pengelola-donasi');
 });
 
 // Donatur
@@ -40,6 +40,8 @@ Route::prefix('donatur')->middleware(['auth', 'role:donatur'])->group(function (
 
 // Lembaga
 Route::prefix('lembaga')->middleware(['auth', 'role:lembaga'])->group(function () {
+    Route::resource('/kampanye', \App\Http\Controllers\Lembaga\KampanyeController::class)->names('lembaga-kampanye');
+    Route::resource('/donasi', \App\Http\Controllers\Lembaga\DonasiController::class)->names('lembaga-donasi');
 });
 
 require __DIR__ . '/auth.php';
