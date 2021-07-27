@@ -27,6 +27,7 @@ class TabelKategori extends LivewireDatatable
                 ->linkTo('pengelola/kategori', 10),
 
             Column::name('nama')
+                ->defaultSort()
                 ->searchable()
                 ->editable(),
 

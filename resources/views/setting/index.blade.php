@@ -1,9 +1,22 @@
 @extends('layouts.dashboard')
 
+@section('sidebar-title')
+    Pengaturan
+@endsection
+
+@section('sidebar-body')
+    <ul>
+        <li class="mb-2 block text-sm text-gray-700 py-1.5 px-2 mx-4 hover:bg-gray-100 rounded bg-gray-100">
+            <a href="{{ route('setting') }}" aria-current="page"
+                class="nuxt-link-exact-active nuxt-link-active">Beranda</a>
+        </li>
+    </ul>
+@endsection
+
 @section('body')
     <div class="grid grid-cols-3 gap-4">
         <a href="{{ route('status-pembayaran.index') }}"
-            class="bg-white h-36 rounded-lg shadow w-full flex items-center justify-center">
+            class="bg-white h-36 rounded-lg w-full flex items-center justify-center border border-gray-200">
             <div class="flex items-center space-x-2">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
                     stroke="currentColor">
@@ -14,7 +27,7 @@
             </div>
         </a>
         <a href="{{ route('jenis-pembayaran.index') }}"
-            class="bg-white h-36 rounded-lg shadow w-full flex items-center justify-center">
+            class="bg-white h-36 rounded-lg w-full flex items-center justify-center border border-gray-200">
             <div class="flex items-center space-x-2">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
                     stroke="currentColor">
@@ -25,7 +38,7 @@
             </div>
         </a>
         <a href="{{ route('metode-pembayaran.index') }}"
-            class="bg-white h-36 rounded-lg shadow w-full flex items-center justify-center">
+            class="bg-white h-36 rounded-lg w-full flex items-center justify-center border border-gray-200">
             <div class="flex items-center space-x-2">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
                     stroke="currentColor">
@@ -36,7 +49,7 @@
             </div>
         </a>
         <a href="{{ route('kategori.index') }}"
-            class="bg-white h-36 rounded-lg shadow w-full flex items-center justify-center">
+            class="bg-white h-36 rounded-lg w-full flex items-center justify-center border border-gray-200">
             <div class="flex items-center space-x-2">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
                     stroke="currentColor">
@@ -47,7 +60,7 @@
             </div>
         </a>
         <a href="{{ route('donatur.index') }}"
-            class="bg-white h-36 rounded-lg shadow w-full flex items-center justify-center">
+            class="bg-white h-36 rounded-lg w-full flex items-center justify-center border border-gray-200">
             <div class="flex items-center space-x-2">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
                     stroke="currentColor">
@@ -58,7 +71,7 @@
             </div>
         </a>
         <a href="{{ route('lembaga.index') }}"
-            class="bg-white h-36 rounded-lg shadow w-full flex items-center justify-center">
+            class="bg-white h-36 rounded-lg w-full flex items-center justify-center border border-gray-200">
             <div class="flex items-center space-x-2">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
                     stroke="currentColor">

@@ -27,6 +27,7 @@ class TabelJenisPembayaran extends LivewireDatatable
                 ->linkTo('pengelola/jenis-pembayaran', 10),
 
             Column::name('nama')
+                ->defaultSort()
                 ->searchable()
                 ->editable(),
 

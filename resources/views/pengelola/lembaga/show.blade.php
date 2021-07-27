@@ -1,7 +1,20 @@
 @extends('layouts.dashboard')
 
+@section('sidebar-title')
+    Lembaga
+@endsection
+
+@section('sidebar-body')
+    <ul>
+        <li class="mb-2 block text-sm text-gray-700 py-1.5 px-2 mx-4 hover:bg-gray-100 rounded">
+            <a href="{{ route('lembaga.index') }}" aria-current="page"
+                class="nuxt-link-exact-active nuxt-link-active">Beranda</a>
+        </li>
+    </ul>
+@endsection
+
 @section('body')
-    <div class="bg-white rounded-lg shadow-lg">
+    <div class="bg-white rounded-lg border border-gray-200">
         <h2 class="font-semibold text-xl p-6">Detail Lembaga</h2>
         <dl class="border-b border-gray-100">
             <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">

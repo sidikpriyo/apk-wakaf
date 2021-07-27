@@ -1,14 +1,18 @@
 @extends('layouts.dashboard')
 
-@section('header')
-    <div class="flex space-x-8">
-        <div class="bg-white h-36 rounded-lg shadow w-full"></div>
-        <div class="bg-white h-36 rounded-lg shadow w-full"></div>
-    </div>
+@section('sidebar-title')
+    Dashboard
+@endsection
+
+@section('sidebar-body')
+    <ul>
+        <li class="mb-2 block text-sm text-gray-700 py-1.5 px-2 mx-4 hover:bg-gray-100 rounded bg-gray-100">
+            <a href="{{ route('dashboard') }}" aria-current="page"
+                class="nuxt-link-exact-active nuxt-link-active">Beranda</a>
+        </li>
+    </ul>
 @endsection
 
 @section('body')
-    <div class="bg-white rounded-lg h-72 shadow-lg">
-        
-    </div>
+    Welcome Back!
 @endsection

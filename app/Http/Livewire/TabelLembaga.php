@@ -31,6 +31,7 @@ class TabelLembaga extends LivewireDatatable
                 ->filterable(),
 
             Column::name('name')
+                ->defaultSort()
                 ->searchable()
                 ->editable()
                 ->filterable(),
