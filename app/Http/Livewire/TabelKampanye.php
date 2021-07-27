@@ -28,6 +28,7 @@ class TabelKampanye extends LivewireDatatable
                 ->linkTo('pengelola/kampanye', 10),
 
             Column::name('nama')
+                ->defaultSort()
                 ->searchable()
                 ->editable(),
 

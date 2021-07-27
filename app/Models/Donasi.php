@@ -12,4 +12,24 @@ class Donasi extends Model
     protected $table = "donasi";
 
     protected $guarded = [];
+
+    public function status()
+    {
+        return $this->belongsTo(StatusPembayaran::class, 'status_pembayaran_id');
+    }
+
+    public function metode()
+    {
+        return $this->belongsTo(MetodePembayaran::class, 'pembayaran_id');
+    }
+
+    public function donatur()
+    {
+        return $this->belongsTo(User::class, 'donatur_id');
+    }
+
+    public function kampanye()
+    {
+        return $this->belongsTo(Kampanye::class, 'kampanye_id');
+    }
 }

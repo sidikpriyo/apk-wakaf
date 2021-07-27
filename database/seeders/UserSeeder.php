@@ -19,17 +19,17 @@ class UserSeeder extends Seeder
         $users = [
             [
                 'email' => 'pengelola@wakaf.id',
-                'name' => 'Pengelola',
+                'name' => 'Nama Pengelola',
                 'role' => 'pengelola'
             ],
             [
                 'email' => 'lembaga@wakaf.id',
-                'name' => 'Lembaga',
+                'name' => 'Nama Lembaga',
                 'role' => 'lembaga'
             ],
             [
                 'email' => 'donatur@wakaf.id',
-                'name' => 'Donatur',
+                'name' => 'Nama Donatur',
                 'role' => 'donatur'
             ]
         ];

@@ -1,9 +1,22 @@
 @extends('layouts.dashboard')
 
-@section('body')
-    <div class="bg-white rounded-lg shadow-lg p-6">
+@section('sidebar-title')
+    Kampanye
+@endsection
 
-        {{ $error ?? '' }}
+@section('sidebar-body')
+    <ul>
+        <li class="mb-2 block text-sm text-gray-700 py-1.5 px-2 mx-4 hover:bg-gray-100 rounded">
+            <a href="{{ route('kampanye.index') }}" aria-current="page"
+                class="nuxt-link-exact-active nuxt-link-active">Beranda</a>
+        </li>
+    </ul>
+@endsection
+
+@section('body')
+    <div class="bg-white rounded-lg border border-gray-200 p-6">
+
+        
         <h2 class="font-semibold text-xl mb-6">Edit Kampanye</h2>
         <form action="{{ route('kampanye.update', ['kampanye' => $kampanye->id]) }}" method="POST">
             @method('PATCH')

@@ -1,7 +1,20 @@
 @extends('layouts.dashboard')
 
+@section('sidebar-title')
+    Metode Pembayaran
+@endsection
+
+@section('sidebar-body')
+    <ul>
+        <li class="mb-2 block text-sm text-gray-700 py-1.5 px-2 mx-4 hover:bg-gray-100 rounded">
+            <a href="{{ route('metode-pembayaran.index') }}" aria-current="page"
+                class="nuxt-link-exact-active nuxt-link-active">Beranda</a>
+        </li>
+    </ul>
+@endsection
+
 @section('body')
-    <div class="bg-white rounded-lg shadow-lg p-6">
+    <div class="bg-white rounded-lg border border-gray-200 p-6">
         <h2 class="font-semibold text-xl mb-6">Tambah Metode Pembayaran</h2>
         <form action="{{ route('metode-pembayaran.store') }}" method="POST">
             @csrf

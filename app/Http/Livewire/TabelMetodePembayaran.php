@@ -27,6 +27,7 @@ class TabelMetodePembayaran extends LivewireDatatable
                 ->linkTo('pengelola/status-pembayaran', 10),
 
             Column::name('nama')
+                ->defaultSort()
                 ->searchable()
                 ->editable(),
 
