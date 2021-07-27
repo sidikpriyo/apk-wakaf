@@ -19,10 +19,8 @@
 </head>
 
 <body class="font-sans text-gray-900 antialiased">
-    @include('layouts.home.header')
-    <main>
-        @yield('body')
-    </main>
+    @include('layouts.home.navigation')
+    @yield('body')
     @include('layouts.home.footer')
 </body>
 
