@@ -61,41 +61,38 @@
         </div>
     </div>
 
-    <div class="pb-16">
-        <div class="mt-8 border border-gray-200 rounded-lg bg-white px-6 py-7">
-            <h2 class="text-base font-bold sm:text-lg md:text-xl">
-                Penggalang Dana
-            </h2>
-            <p class="mt-2 text-sm text-gray-500">
-                {{ $kampanye->lembaga->name ?? '-' }}
-            </p>
-        </div>
+    <div class="mt-8 border border-gray-200 rounded-lg bg-white px-6 py-7">
+        <h2 class="text-base font-bold sm:text-lg md:text-xl">
+            Penggalang Dana
+        </h2>
+        <p class="mt-2 text-sm text-gray-500">
+            {{ $kampanye->lembaga->name ?? '-' }}
+        </p>
+    </div>
 
-        <div class="mt-8 border border-gray-200 rounded-lg bg-white px-6 py-7">
-            <h2 class="text-base font-bold sm:text-lg md:text-xl">
-                Penggunaan Dana
-            </h2>
-            <p class="mt-2 text-sm text-gray-500">
-                {{ $kampanye->deskripsi ?? '-' }}
-            </p>
-        </div>
+    <div class="mt-8 border border-gray-200 rounded-lg bg-white px-6 py-7">
+        <h2 class="text-base font-bold sm:text-lg md:text-xl">
+            Penggunaan Dana
+        </h2>
+        <p class="mt-2 text-sm text-gray-500">
+            {{ $kampanye->deskripsi ?? '-' }}
+        </p>
+    </div>
 
-        <div class="mt-8 border border-gray-200 rounded-lg bg-white px-6 py-7">
-            <h2 class="text-base font-bold sm:text-lg md:text-xl mb-4">
-                Donatur
-            </h2>
-            <div class="bg-gray-100 p-3 rounded-lg mb-3">
-                @foreach ($kampanye->donasi as $item)
-                    <div class="flex items-center justify-between mb-2 text-sm">
-                        <div class="font-bold">{{ $item->name }}</div>
-                        <div class="font-light text-gray-700">
-                            {{ \Carbon\Carbon::parse($item->created_at)->format('d/m/Y') }}
-                        </div>
+    <div class="mt-8 border border-gray-200 rounded-lg bg-white px-6 py-7">
+        <h2 class="text-base font-bold sm:text-lg md:text-xl mb-4">
+            Donatur
+        </h2>
+        <div class="bg-gray-100 p-3 rounded-lg mb-3">
+            @foreach ($kampanye->donasi as $item)
+                <div class="flex items-center justify-between mb-2 text-sm">
+                    <div class="font-bold">{{ $item->name }}</div>
+                    <div class="font-light text-gray-700">
+                        {{ \Carbon\Carbon::parse($item->created_at)->format('d/m/Y') }}
                     </div>
-                    <p class="text-gray-700 text-xs">Donasi Rp {{ number_format($item->nominal) }}</p>
-                @endforeach
-            </div>
+                </div>
+                <p class="text-gray-700 text-xs">Donasi Rp {{ number_format($item->nominal) }}</p>
+            @endforeach
         </div>
-
     </div>
 @endsection

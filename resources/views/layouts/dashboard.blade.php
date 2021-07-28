@@ -44,7 +44,9 @@
         @include('layouts.dashboard.topbar')
         <div class="p-10 flex flex-1 flex-grow overflow-x-scroll">
             <div class="w-full">
-                @yield('body')
+                <div class="pb-14">
+                    @yield('body')
+                </div>
             </div>
         </div>
     </div>

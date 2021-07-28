@@ -37,7 +37,7 @@ Route::prefix('pengelola')->middleware(['auth', 'role:pengelola'])->group(functi
 // Donatur
 Route::prefix('donatur')->middleware(['auth', 'role:donatur'])->group(function () {
     Route::resource('/kampanye', \App\Http\Controllers\Donatur\KampanyeController::class)->names('donatur-kampanye')->only(['index', 'show']);
-    Route::resource('/donasi', \App\Http\Controllers\Donatur\KampanyeController::class)->names('donatur-donasi');
+    Route::resource('/donasi', \App\Http\Controllers\Donatur\DonasiController::class)->names('donatur-donasi')->only(['index', 'show']);
 });
 
 // Lembaga
