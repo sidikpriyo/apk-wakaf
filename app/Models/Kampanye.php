@@ -22,4 +22,11 @@ class Kampanye extends Model
     {
         return $this->belongsTo(Kategori::class, 'kategori_id');
     }
+
+    public function getTanggalBerakhirAttribute($date)
+    {
+        $hari = \Carbon\Carbon::now()->diffInDays(\Carbon\Carbon::parse($date), false);
+
+        return $hari > 0 ? $hari . ' hari lagi' : 'Telah berakhir';
+    }
 }

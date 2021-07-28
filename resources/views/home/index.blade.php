@@ -23,7 +23,7 @@
                         <div
                             class="relative flex flex-col items-start px-6 bg-white border border-t-0 border-gray-200 py-7 rounded-b-2xl w-full">
                             <div
-                                class="bg-indigo-400 absolute top-0 -mt-3 flex items-center px-3 py-1.5 leading-none w-auto inline-block rounded-full text-xs font-medium uppercase text-white inline-block">
+                                class="bg-blue-500 absolute top-0 -mt-3 flex items-center px-3 py-1.5 leading-none w-auto rounded-xl text-xs uppercase text-white inline-block">
                                 <span>{{ $item->kategori()->first()->nama }}</span>
                             </div>
                             <h2 class="text-base font-bold sm:text-lg md:text-xl">
@@ -34,6 +34,17 @@
                             <p class="mt-2 text-sm text-gray-500">
                                 {{ $item->keterangan }}
                             </p>
+                            <div class="relative pt-4 w-full">
+                                <div class="overflow-hidden h-2 mb-4 text-xs flex rounded bg-red-200">
+                                    <div style="width:{{ floor($item->terkumpul / $item->kebutuhan) }}%"
+                                        class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-red-500">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex justify-between items-center w-full text-sm text-gray-700">
+                                <div>Rp {{ number_format($item->terkumpul) }}</div>
+                                <div>{{ $item->tanggal_berakhir }}</div>
+                            </div>
                         </div>
                     </div>
                 @endforeach
