@@ -14,7 +14,7 @@ class TabelKampanye extends LivewireDatatable
     public $hideable = 'select';
     public $model = Kampanye::class;
     public $beforeTableSlot = 'pengelola.kampanye.button';
-    public $linkTo = 'pengelola/donasi';
+    public $linkTo = 'pengelola/kampanye';
 
     public function __construct()
     {

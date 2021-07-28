@@ -18,8 +18,20 @@ class Kampanye extends Model
         return $this->belongsTo(User::class, 'lembaga_id');
     }
 
+    public function donasi()
+    {
+        return $this->hasMany(Donasi::class, 'kampanye_id');
+    }
+
     public function kategori()
     {
         return $this->belongsTo(Kategori::class, 'kategori_id');
+    }
+
+    public function getTanggalBerakhirAttribute($date)
+    {
+        $hari = \Carbon\Carbon::now()->diffInDays(\Carbon\Carbon::parse($date), false);
+
+        return $hari > 0 ? $hari . ' hari lagi' : 'Telah berakhir';
     }
 }

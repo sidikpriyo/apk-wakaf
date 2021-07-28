@@ -19,17 +19,30 @@ class TabelDonasi extends LivewireDatatable
 
     public function __construct()
     {
-        if (auth()->user()->role === 'lembaga') {
-            $this->beforeTableSlot = 'lembaga.donasi.button';
-            $this->linkTo = 'lembaga/donasi';
+        switch (auth()->user()->role) {
+            case 'lembaga':
+                $this->beforeTableSlot = 'lembaga.donasi.button';
+                $this->linkTo = 'lembaga/donasi';
+                break;
+            case 'donatur':
+                $this->beforeTableSlot = 'donatur.donasi.button';
+                $this->linkTo = 'donatur/donasi';
+                break;
+            default:
+                # code...
+                break;
         }
     }
 
     public function builder()
     {
         $user = auth()->user();
-        return Donasi::query()->when($user->role === 'lembaga', function ($query) use ($user) {
-            $query->where('lembaga_id', '=', $user->id);
+        return Donasi::query()->when($user->role === 'donatur', function ($query) use ($user) {
+            $query->where('donatur_id', '=', $user->id);
+        })->when($user->role === 'lembaga', function ($query) use ($user) {
+            $query->whereHas('kampanye', function ($query) use ($user) {
+                $query->where('lembaga_id', '=', $user->id);
+            });
         });
     }
 
@@ -40,7 +53,9 @@ class TabelDonasi extends LivewireDatatable
                 ->label('ID')
                 ->linkTo($this->linkTo, 10),
 
-            Column::name('kampanye.nama')->label('Kampanye')->searchable()->defaultSort(),
+            DateColumn::name('created_at')->label('Tanggal')->defaultSort(),
+
+            Column::name('kampanye.nama')->label('Kampanye')->searchable(),
 
             Column::name('donatur.name')->label('Donatur'),
 
@@ -49,8 +64,6 @@ class TabelDonasi extends LivewireDatatable
             Column::name('metode.nama')->label('Metode Pembayaran'),
 
             Column::name('status.nama')->label('Status Pembayaran'),
-
-            DateColumn::name('created_at')->label('Tanggal')
         ];
     }
 }

@@ -8,7 +8,8 @@
         </svg>
     </div>
     <ul class="w-full flex flex-col justify-center space-y-1">
-        <li class="hover:bg-blue-600 py-3 justify-center flex items-center cursor-pointer mx-4 rounded-lg bg-blue-500">
+        <li
+            class="hover:bg-blue-600 py-3 justify-center flex items-center cursor-pointer mx-4 rounded-lg {{ strpos(url()->current(), 'dashboard') ? 'bg-blue-500' : '' }}">
             <a href="{{ route('dashboard') }}" aria-current="page"
                 class="nuxt-link-exact-active nuxt-link-active has-tooltip" data-original-title="null">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="white">
@@ -19,7 +20,8 @@
             </a>
         </li>
         @can('pengelola', User::class)
-            <li class="hover:bg-blue-600 py-3 justify-center flex items-center cursor-pointer mx-4 rounded-lg">
+            <li
+                class="hover:bg-blue-600 py-3 justify-center flex items-center cursor-pointer mx-4 rounded-lg {{ strpos(url()->current(), 'kampanye') ? 'bg-blue-500' : '' }}">
                 <a href="{{ route('pengelola-kampanye.index') }}" data-original-title="null">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                         <path fill-rule="evenodd"
@@ -28,7 +30,8 @@
                     </svg>
                 </a>
             </li>
-            <li class="hover:bg-blue-600 py-3 justify-center flex items-center cursor-pointer mx-4 rounded-lg">
+            <li
+                class="hover:bg-blue-600 py-3 justify-center flex items-center cursor-pointer mx-4 rounded-lg {{ strpos(url()->current(), 'donasi') ? 'bg-blue-500' : '' }}">
                 <a href="{{ route('pengelola-donasi.index') }}" data-original-title="null">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                         <path d="M4 4a2 2 0 00-2 2v1h16V6a2 2 0 00-2-2H4z" />
@@ -40,7 +43,8 @@
             </li>
         @endcan
         @can('lembaga', User::class)
-            <li class="hover:bg-blue-600 py-3 justify-center flex items-center cursor-pointer mx-4 rounded-lg">
+            <li
+                class="hover:bg-blue-600 py-3 justify-center flex items-center cursor-pointer mx-4 rounded-lg {{ strpos(url()->current(), 'kampanye') ? 'bg-blue-500' : '' }}">
                 <a href="{{ route('lembaga-kampanye.index') }}" data-original-title="null">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                         <path fill-rule="evenodd"
@@ -49,7 +53,8 @@
                     </svg>
                 </a>
             </li>
-            <li class="hover:bg-blue-600 py-3 justify-center flex items-center cursor-pointer mx-4 rounded-lg">
+            <li
+                class="hover:bg-blue-600 py-3 justify-center flex items-center cursor-pointer mx-4 rounded-lg {{ strpos(url()->current(), 'donasi') ? 'bg-blue-500' : '' }}">
                 <a href="{{ route('lembaga-donasi.index') }}" data-original-title="null">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                         <path d="M4 4a2 2 0 00-2 2v1h16V6a2 2 0 00-2-2H4z" />
@@ -61,7 +66,27 @@
             </li>
         @endcan
         @can('donatur', User::class)
-
+            <li
+                class="hover:bg-blue-600 py-3 justify-center flex items-center cursor-pointer mx-4 rounded-lg {{ strpos(url()->current(), 'kampanye') ? 'bg-blue-500' : '' }}">
+                <a href="{{ route('donatur-kampanye.index') }}" data-original-title="null">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd"
+                            d="M18 3a1 1 0 00-1.447-.894L8.763 6H5a3 3 0 000 6h.28l1.771 5.316A1 1 0 008 18h1a1 1 0 001-1v-4.382l6.553 3.276A1 1 0 0018 15V3z"
+                            clip-rule="evenodd" />
+                    </svg>
+                </a>
+            </li>
+            <li
+                class="hover:bg-blue-600 py-3 justify-center flex items-center cursor-pointer mx-4 rounded-lg {{ strpos(url()->current(), 'donasi') ? 'bg-blue-500' : '' }}">
+                <a href="{{ route('donatur-donasi.index') }}" data-original-title="null">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M4 4a2 2 0 00-2 2v1h16V6a2 2 0 00-2-2H4z" />
+                        <path fill-rule="evenodd"
+                            d="M18 9H2v5a2 2 0 002 2h12a2 2 0 002-2V9zM4 13a1 1 0 011-1h1a1 1 0 110 2H5a1 1 0 01-1-1zm5-1a1 1 0 100 2h1a1 1 0 100-2H9z"
+                            clip-rule="evenodd" />
+                    </svg>
+                </a>
+            </li>
         @endcan
     </ul>
 
