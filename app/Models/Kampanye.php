@@ -18,6 +18,11 @@ class Kampanye extends Model
         return $this->belongsTo(User::class, 'lembaga_id');
     }
 
+    public function donasi()
+    {
+        return $this->hasMany(Donasi::class, 'kampanye_id');
+    }
+
     public function kategori()
     {
         return $this->belongsTo(Kategori::class, 'kategori_id');

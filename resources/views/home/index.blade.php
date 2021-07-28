@@ -16,18 +16,19 @@
                 @foreach ($kampanye as $item)
                     <div
                         class="flex flex-col items-start col-span-12 overflow-hidden shadow-sm rounded-xl md:col-span-6 lg:col-span-4">
-                        <a href="#" class="block transition duration-200 ease-out transform hover:scale-110">
+                        <a href="{{ route('donatur-kampanye.show', ['kampanye' => $item->id]) }}"
+                            class="block transition duration-200 ease-out transform hover:scale-110">
                             <img class="object-cover w-full shadow-sm max-h-56"
                                 src="{{ asset('storage/' . $item->gambar) }}">
                         </a>
                         <div
                             class="relative flex flex-col items-start px-6 bg-white border border-t-0 border-gray-200 py-7 rounded-b-2xl w-full">
                             <div
-                                class="bg-blue-500 absolute top-0 -mt-3 flex items-center px-3 py-1.5 leading-none w-auto rounded-xl text-xs uppercase text-white inline-block">
+                                class="bg-blue-500 absolute top-0 -mt-3 flex items-center px-3 py-1.5 leading-none w-auto rounded-xl text-xs uppercase text-white">
                                 <span>{{ $item->kategori()->first()->nama }}</span>
                             </div>
                             <h2 class="text-base font-bold sm:text-lg md:text-xl">
-                                <a href="#_">
+                                <a href="{{ route('donatur-kampanye.show', ['kampanye' => $item->id]) }}">
                                     {{ $item->nama }}
                                 </a>
                             </h2>
@@ -35,9 +36,9 @@
                                 {{ $item->keterangan }}
                             </p>
                             <div class="relative pt-4 w-full">
-                                <div class="overflow-hidden h-2 mb-4 text-xs flex rounded bg-red-200">
+                                <div class="overflow-hidden h-2 mb-4 text-xs flex rounded bg-blue-200">
                                     <div style="width:{{ floor($item->terkumpul / $item->kebutuhan) }}%"
-                                        class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-red-500">
+                                        class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-blue-500">
                                     </div>
                                 </div>
                             </div>
@@ -50,6 +51,8 @@
                 @endforeach
 
             </div>
+
+            <div class="mt-4">{{ $kampanye->links() }}</div>
         </div>
     </section>
 @endsection
