@@ -1,11 +1,16 @@
 <div
     class="w-20 bg-gradient-to-bl from-blue-500 to-blue-600 text-white h-screen flex flex-none items-center justify-between flex-col text-center py-6">
     <div class="justify-center flex items-center w-full">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-5 w-5">
-            <path
-                d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z">
-            </path>
-        </svg>
+        <a href="{{ route('notifikasi') }}"
+            class="hover:bg-blue-600 rounded-lg {{ strpos(url()->current(), 'notifikasi') ? 'bg-blue-500' : '' }}">
+            <span class="py-3 justify-center flex items-center cursor-pointer mx-4">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-5 w-5">
+                    <path
+                        d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z">
+                    </path>
+                </svg>
+            </span>
+        </a>
     </div>
     <ul class="w-full flex flex-col justify-center space-y-1">
         <li
@@ -91,12 +96,15 @@
     </ul>
 
     <div class="justify-center flex flex-col items-center w-full space-y-8">
-        <a href="{{ route('setting') }}" title="Pengaturan">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-5 w-5">
-                <path
-                    d="M5 4a1 1 0 00-2 0v7.268a2 2 0 000 3.464V16a1 1 0 102 0v-1.268a2 2 0 000-3.464V4zM11 4a1 1 0 10-2 0v1.268a2 2 0 000 3.464V16a1 1 0 102 0V8.732a2 2 0 000-3.464V4zM16 3a1 1 0 011 1v7.268a2 2 0 010 3.464V16a1 1 0 11-2 0v-1.268a2 2 0 010-3.464V4a1 1 0 011-1z">
-                </path>
-            </svg>
+        <a href="{{ route('pengaturan') }}" title="Pengaturan"
+            class="hover:bg-blue-600 rounded-lg {{ strpos(url()->current(), 'pengaturan') ? 'bg-blue-500' : '' }}">
+            <span class="py-3 justify-center flex items-center cursor-pointer mx-4">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-5 w-5">
+                    <path
+                        d="M5 4a1 1 0 00-2 0v7.268a2 2 0 000 3.464V16a1 1 0 102 0v-1.268a2 2 0 000-3.464V4zM11 4a1 1 0 10-2 0v1.268a2 2 0 000 3.464V16a1 1 0 102 0V8.732a2 2 0 000-3.464V4zM16 3a1 1 0 011 1v7.268a2 2 0 010 3.464V16a1 1 0 11-2 0v-1.268a2 2 0 010-3.464V4a1 1 0 011-1z">
+                    </path>
+                </svg>
+            </span>
         </a>
         <form method="POST" action="{{ route('logout') }}">
             @csrf

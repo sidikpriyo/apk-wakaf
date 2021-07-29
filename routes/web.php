@@ -17,9 +17,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [\App\Http\Controllers\HomeController::class, 'home'])->name('home');
 
 // User
-Route::prefix('dashboard')->middleware(['auth', 'verified'])->group(function () {
-    Route::get('/', [\App\Http\Controllers\HomeController::class, 'dashboard'])->name('dashboard');
-    Route::get('/setting', [\App\Http\Controllers\HomeController::class, 'setting'])->name('setting');
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/dashboard', [\App\Http\Controllers\HomeController::class, 'dashboard'])->name('dashboard');
+    Route::get('/pengaturan', [\App\Http\Controllers\HomeController::class, 'pengaturan'])->name('pengaturan');
+    Route::get('/notifikasi', [\App\Http\Controllers\HomeController::class, 'notifikasi'])->name('notifikasi');
 });
 
 // Pengelola

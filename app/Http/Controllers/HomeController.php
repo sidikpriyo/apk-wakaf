@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kampanye;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -21,8 +22,18 @@ class HomeController extends Controller
         return view('dashboard.index');
     }
 
-    public function setting(Request $request)
+    public function pengaturan(Request $request)
     {
-        return view('setting.index');
+        return view('pengaturan.index');
+    }
+
+    public function notifikasi(Request $request)
+    {
+        $user = User::find(auth()->id());
+        $notifikasi = $user->notifications();
+
+        return view('notifikasi.index', [
+            'notifikasi' => $notifikasi
+        ]);
     }
 }
