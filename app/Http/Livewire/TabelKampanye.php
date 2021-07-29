@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\Kampanye;
+use Mediconesystems\LivewireDatatables\BooleanColumn;
 use Mediconesystems\LivewireDatatables\Column;
 use Mediconesystems\LivewireDatatables\DateColumn;
 use Mediconesystems\LivewireDatatables\Http\Livewire\LivewireDatatable;
@@ -49,6 +50,8 @@ class TabelKampanye extends LivewireDatatable
             NumberColumn::name('kebutuhan'),
 
             NumberColumn::name('terkumpul'),
+
+            BooleanColumn::name('tanggal_publikasi')->label('Disetujui'),
 
             Column::name('lembaga.name')->label('Lembaga'),
 

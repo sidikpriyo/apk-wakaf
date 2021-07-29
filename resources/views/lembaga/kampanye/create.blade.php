@@ -36,8 +36,8 @@
             <div class="mt-4">
                 <x-label for="keterangan" :value="__('Keterangan')" />
 
-                <x-textarea id="keterangan" class="block mt-1 w-full border border-gray-200 p-1" type="text"
-                    name="keterangan" required />
+                <x-input id="keterangan" class="block mt-1 w-full border border-gray-200 p-1" type="text" name="keterangan"
+                    :value="old('keterangan')" required />
             </div>
 
             <div class="mt-4">

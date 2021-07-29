@@ -10,7 +10,7 @@ class HomeController extends Controller
 {
     public function home(Request $request)
     {
-        $kampanye = Kampanye::paginate(6);
+        $kampanye = Kampanye::aktif()->paginate(6);
 
         return view('home.index', [
             'kampanye' => $kampanye

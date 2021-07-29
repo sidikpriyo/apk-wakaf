@@ -10,7 +10,7 @@ class KampanyeController extends Controller
 {
     public function index()
     {
-        $kampanye = Kampanye::paginate(6);
+        $kampanye = Kampanye::aktif()->paginate(6);
         return view('donatur.kampanye.index', [
             'kampanye' => $kampanye
         ]);

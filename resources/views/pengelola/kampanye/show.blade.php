@@ -38,8 +38,8 @@
                     Gambar
                 </dt>
                 <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
-                    <a class="text-indigo-500 underline" href="{{ asset($kampanye->gambar) ?? '-' }}" target="_blank"
-                        rel="noopener noreferrer">{{ asset($kampanye->gambar) ?? '-' }}</a>
+                    <a class="text-indigo-500 underline" href="{{ asset('storage/' . $kampanye->gambar) ?? '-' }}"
+                        target="_blank" rel="noopener noreferrer">{{ asset('storage/' . $kampanye->gambar) ?? '-' }}</a>
                 </dd>
             </div>
             <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -72,6 +72,14 @@
                 </dt>
                 <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
                     {{ number_format($kampanye->terkumpul ?? 0) }}
+                </dd>
+            </div>
+            <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                <dt class="text-sm leading-5 font-medium text-gray-500">
+                    Status
+                </dt>
+                <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
+                    {{ is_null($kampanye->tanggal_publikasi) ? 'Menunggu Persetujuan' : 'Aktif' }}
                 </dd>
             </div>
         </dl>
