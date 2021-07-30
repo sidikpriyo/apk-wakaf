@@ -55,7 +55,7 @@ class HomeController extends Controller
         ]);
     }
 
-    public function goto($id)
+    public function buka($id)
     {
         $user = User::find(auth()->id());
         $notifikasi = $user->notifications()->find($id);

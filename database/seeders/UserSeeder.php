@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Lembaga;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
@@ -35,7 +36,7 @@ class UserSeeder extends Seeder
         ];
 
         foreach ($users as $user) {
-            User::updateOrCreate([
+            $data = User::updateOrCreate([
                 'email' => $user['email']
             ], [
                 'name' => $user['name'],
@@ -43,6 +44,13 @@ class UserSeeder extends Seeder
                 'role' => $user['role'],
                 'email_verified_at' => now()
             ]);
+
+            if ($user['role'] === 'lembaga') {
+                Lembaga::create([
+                    'nama' => $user['name'],
+                    'user_id' => $data->id
+                ]);
+            }
         }
     }
 }

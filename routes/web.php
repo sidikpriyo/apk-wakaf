@@ -21,7 +21,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', [\App\Http\Controllers\HomeController::class, 'dashboard'])->name('dashboard');
     Route::get('/pengaturan', [\App\Http\Controllers\HomeController::class, 'pengaturan'])->name('pengaturan');
     Route::get('/notifikasi', [\App\Http\Controllers\HomeController::class, 'notifikasi'])->name('notifikasi');
-    Route::get('/goto/{notifikasi}', [\App\Http\Controllers\HomeController::class, 'goto'])->name('goto');
+    Route::get('/buka/{notifikasi}', [\App\Http\Controllers\HomeController::class, 'buka'])->name('buka');
 });
 
 // Pengelola
@@ -49,7 +49,9 @@ Route::prefix('donatur')->middleware(['auth', 'role:donatur'])->group(function (
 Route::prefix('lembaga')->middleware(['auth', 'role:lembaga'])->group(function () {
     Route::resource('/kampanye', \App\Http\Controllers\Lembaga\KampanyeController::class)->names('lembaga-kampanye');
     Route::resource('/donasi', \App\Http\Controllers\Lembaga\DonasiController::class)->names('lembaga-donasi');
-    Route::resource('/profil', \App\Http\Controllers\Lembaga\LembagaController::class)->names('lembaga-profil')->only(['index', 'edit', 'update']);
+    Route::resource('/profil', \App\Http\Controllers\Lembaga\LembagaController::class)->names('lembaga-profil')->only(['index', 'edit', 'update', 'store']);
+
+    Route::get('/profil/{profil}/lembaga/{lembaga}', [\App\Http\Controllers\Lembaga\LembagaController::class, 'lembaga'])->name('lembaga-profil.lembaga');
 });
 
 require __DIR__ . '/auth.php';

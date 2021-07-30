@@ -58,6 +58,11 @@ class LembagaController extends Controller
 
         // event(new Registered($user));
 
+        Lembaga::create([
+            'nama' => $request->name,
+            'user_id' => $user->id
+        ]);
+
         return redirect()->route('lembaga.index');
     }
 

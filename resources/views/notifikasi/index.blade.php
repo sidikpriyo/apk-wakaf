@@ -26,8 +26,14 @@
             </a>
         </div>
 
+        @if ($notifikasi->total() === 0)
+            <div class="items-center flex justify-center h-32 text-gray-500 uppercase text-xs">
+                Belum ada notifikasi baru
+            </div>
+        @endif
+
         @foreach ($notifikasi as $item)
-            <a href="{{ route('goto', ['notifikasi' => $item->id]) }}">
+            <a href="{{ route('buka', ['notifikasi' => $item->id]) }}">
                 <div
                     class="px-6 py-4 {{ is_null($item->read_at) ? 'bg-blue-100' : 'bg-white' }} rounded-md border border-gray-200 flex items-start justify-between cursor-pointer">
                     <div class="flex items-center justify-start space-x-4">
