@@ -34,7 +34,7 @@ class KampanyeNotification extends Notification implements ShouldQueue
      */
     public function via($notifiable)
     {
-        return ['array'];
+        return ['database'];
     }
 
     /**
@@ -43,7 +43,7 @@ class KampanyeNotification extends Notification implements ShouldQueue
      * @param  mixed  $notifiable
      * @return array
      */
-    public function toArray($notifiable)
+    public function toDatabase($notifiable)
     {
         return [
             'title' => $this->title,

@@ -30,7 +30,19 @@ class HomeController extends Controller
     public function notifikasi(Request $request)
     {
         $user = User::find(auth()->id());
-        $notifikasi = $user->notifications();
+        $notifikasi = [];
+
+        switch ($request->get('type')) {
+            case 'all':
+                $notifikasi = $user->notifications;
+                break;
+            case 'unread':
+                $notifikasi = $user->unreadNotifications;
+                break;
+            default:
+                $notifikasi = $user->unreadNotifications;
+                break;
+        }
 
         return view('notifikasi.index', [
             'notifikasi' => $notifikasi
