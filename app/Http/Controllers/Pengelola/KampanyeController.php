@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Pengelola;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\KampanyeRequest;
+use App\Jobs\Lembaga\NotifikasiKampanyeJobs;
 use App\Models\Kampanye;
 use App\Models\Kategori;
 use App\Models\User;
@@ -127,9 +128,8 @@ class KampanyeController extends Controller
             abort(404, 'Kampanye sudah dipublikasi');
         }
 
-        $lembaga = User::find($kampanye->lembaga_id);
-
-        $lembaga->notify(new KampanyeNotification('Persetujuan Publikasi', 'Kampanye yang anda ajukan telah disetujui', $kampanye->id));
+        // Notifikasi Lembaga
+        NotifikasiKampanyeJobs::dispatch($kampanye);
 
         $kampanye->update([
             'tanggal_publikasi' => now()

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Lembaga;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\KampanyeRequest;
+use App\Jobs\Pengelola\NotifikasiKampanyeJobs;
 use App\Models\Kampanye;
 use App\Models\Kategori;
 use App\Models\User;
@@ -40,6 +41,10 @@ class KampanyeController extends Controller
     {
         if ($kampanye->lembaga_id !== auth()->id()) {
             return redirect()->route('lembaga-kampanye.index');
+        }
+
+        if (!is_null($kampanye->tanggal_publikasi)) {
+            abort(404);
         }
 
         // Init Data
@@ -92,6 +97,7 @@ class KampanyeController extends Controller
     public function store(KampanyeRequest $request)
     {
         try {
+            $lembaga = auth()->user();
             $data = $request->only([
                 'nama',
                 'keterangan',
@@ -101,21 +107,19 @@ class KampanyeController extends Controller
                 'kategori_id',
             ]);
 
-            $data = array_merge([
-                'lembaga_id' => auth()->id()
-            ], $data);
-
             $path = $request->file('gambar')->storePubliclyAs(
                 'kampanye',
-                $request->user()->id . "-" . time(),
+                $lembaga->id . "-" . time(),
                 'public'
             );
 
             $data = array_merge([
+                'lembaga_id' => $lembaga->id,
                 'gambar' => $path
             ], $data);
 
-            Kampanye::create($data);
+            $kampanye = Kampanye::create($data);
+            NotifikasiKampanyeJobs::dispatch($lembaga, $kampanye);
         } catch (\Throwable $th) {
             //throw $th;
         }
@@ -128,7 +132,7 @@ class KampanyeController extends Controller
 
         // Check if active
         if (!is_null($kampanye->tanggal_publikasi)) {
-            abort(404, 'Kampanye aktif tidak bisa dihapus');
+            abort(404);
         }
 
         $kampanye->delete();

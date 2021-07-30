@@ -22,8 +22,23 @@ class MetodePembayaranSeeder extends Seeder
                 'jenis_pembayaran' => 'tunai'
             ],
             [
-                'nama' => 'Transfer Manual',
-                'kode' => 'transfer',
+                'nama' => 'Rekening BCA',
+                'kode' => 'bca',
+                'jenis_pembayaran' => 'transfer'
+            ],
+            [
+                'nama' => 'Rekening Mandiri',
+                'kode' => 'mandiri',
+                'jenis_pembayaran' => 'transfer'
+            ],
+            [
+                'nama' => 'Rekening BNI',
+                'kode' => 'bni',
+                'jenis_pembayaran' => 'transfer'
+            ],
+            [
+                'nama' => 'Rekening BRI',
+                'kode' => 'bri',
                 'jenis_pembayaran' => 'transfer'
             ],
             [

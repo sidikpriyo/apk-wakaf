@@ -21,6 +21,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', [\App\Http\Controllers\HomeController::class, 'dashboard'])->name('dashboard');
     Route::get('/pengaturan', [\App\Http\Controllers\HomeController::class, 'pengaturan'])->name('pengaturan');
     Route::get('/notifikasi', [\App\Http\Controllers\HomeController::class, 'notifikasi'])->name('notifikasi');
+    Route::get('/goto/{notifikasi}', [\App\Http\Controllers\HomeController::class, 'goto'])->name('goto');
 });
 
 // Pengelola
@@ -35,7 +36,6 @@ Route::prefix('pengelola')->middleware(['auth', 'role:pengelola'])->group(functi
     Route::resource('/donasi', \App\Http\Controllers\Pengelola\DonasiController::class)->names('pengelola-donasi');
 
     Route::get('/kampanye/{kampanye}/publikasi', [\App\Http\Controllers\Pengelola\KampanyeController::class, 'publikasi'])->name('pengelola-kampanye.publikasi');
-
 });
 
 // Donatur
