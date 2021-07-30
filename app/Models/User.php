@@ -64,4 +64,15 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $query->where('role', '=', 'donatur');
     }
+
+    /**
+     * Filter Pengelola
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopePengelola(Builder $query)
+    {
+        return $query->where('role', '=', 'pengelola');
+    }
 }

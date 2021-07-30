@@ -42,8 +42,7 @@ class TabelKampanye extends LivewireDatatable
 
             Column::name('nama')
                 ->defaultSort()
-                ->searchable()
-                ->editable(),
+                ->searchable(),
 
             Column::name('kategori.nama')->label('Kategori'),
 
