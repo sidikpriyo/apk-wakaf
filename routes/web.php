@@ -49,7 +49,7 @@ Route::prefix('donatur')->middleware(['auth', 'role:donatur'])->group(function (
 Route::prefix('lembaga')->middleware(['auth', 'role:lembaga'])->group(function () {
     Route::resource('/kampanye', \App\Http\Controllers\Lembaga\KampanyeController::class)->names('lembaga-kampanye');
     Route::resource('/donasi', \App\Http\Controllers\Lembaga\DonasiController::class)->names('lembaga-donasi');
-    Route::resource('/profil', \App\Http\Controllers\Lembaga\LembagaController::class)->names('lembaga-profil')->only(['index', 'show', 'store']);
+    Route::resource('/profil', \App\Http\Controllers\Lembaga\LembagaController::class)->names('lembaga-profil')->only(['index', 'edit', 'update']);
 });
 
 require __DIR__ . '/auth.php';

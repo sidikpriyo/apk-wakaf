@@ -3,26 +3,31 @@
 namespace App\Http\Controllers\Lembaga;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class LembagaController extends Controller
 {
     public function index()
     {
-        return view('lembaga.profil.index');
+        $user = auth()->user();
+        return view('lembaga.profil.index', [
+            'profil' => $user
+        ]);
     }
 
-    public function show()
+    public function edit()
     {
-        return view('lembaga.profil.show');
+        $user = auth()->user();
+        return view('lembaga.profil.edit', [
+            'profil' => $user
+        ]);
     }
 
-    public function store()
+    public function update(User $profil, Request $request)
     {
-        try {
-            //code...
-        } catch (\Throwable $th) {
-            //throw $th;
-        }
+        $profil->update($request->all());
+
+        return redirect()->route('lembaga-profil.index');
     }
 }
