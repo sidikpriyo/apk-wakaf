@@ -44,7 +44,7 @@
                             </div>
                             <div class="flex justify-between items-center w-full text-sm text-gray-700">
                                 <div>Rp {{ number_format($item->terkumpul) }}</div>
-                                <div>{{ $item->kapan_berakhir }}</div>
+                                <div>{{ $item->kapan_berakhir ?? 'Telah berakhir' }}</div>
                             </div>
                         </div>
                     </div>

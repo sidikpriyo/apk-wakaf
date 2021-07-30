@@ -16,7 +16,7 @@
 @section('body')
 
     @can('pengelola', User::class)
-        <div class="grid grid-cols-3 gap-4">
+        <div class="grid grid-cols-2 gap-4">
             <a href="{{ route('status-pembayaran.index') }}"
                 class="bg-white h-36 rounded-lg w-full flex items-center justify-center border border-gray-200">
                 <div class="flex items-center space-x-2">
@@ -87,7 +87,7 @@
     @endcan
 
     @can('lembaga', User::class)
-        <div class="grid grid-cols-3 gap-4">
+        <div class="grid grid-cols-2 gap-4">
             <a href="{{ route('lembaga-profil.index') }}"
                 class="bg-white h-36 rounded-lg w-full flex items-center justify-center border border-gray-200">
                 <div class="flex items-center space-x-2">
@@ -103,7 +103,7 @@
     @endcan
 
     @can('donatur', User::class)
-        <div class="grid grid-cols-3 gap-4">
+        <div class="grid grid-cols-2 gap-4">
             <a href="{{ route('donatur-profil.index') }}"
                 class="bg-white h-36 rounded-lg w-full flex items-center justify-center border border-gray-200">
                 <div class="flex items-center space-x-2">

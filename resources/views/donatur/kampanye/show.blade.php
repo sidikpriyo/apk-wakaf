@@ -8,8 +8,7 @@
 @section('sidebar-body')
     <ul>
         <li class="mb-2 block text-sm text-gray-700 py-1.5 px-2 mx-4 hover:bg-gray-100 rounded">
-            <a href="{{ route('donatur-kampanye.index') }}" aria-current="page"
-                >Beranda</a>
+            <a href="{{ route('donatur-kampanye.index') }}" aria-current="page">Beranda</a>
         </li>
     </ul>
 @endsection
@@ -48,15 +47,16 @@
             </div>
 
             <div class="flex justify-between items-center w-full text-sm text-gray-700">
-                <div>{{ $kampanye->id }} Donatur</div>
-                <div>{{ $kampanye->tanggal_berakhir }}</div>
+                <div>{{ $kampanye->donasi_count }} Donatur</div>
+                <div>{{ $kampanye->kapan_berakhir ?? 'Telah berakhir' }}</div>
             </div>
 
             <div class="mt-6 w-full">
-                <button
-                    class="bg-blue-500 hover:bg-blue-400 text-white block w-full font-semibold text-sm rounded px-4 py-3 text-center">Wakaf
+                <a href="{{ is_null($kampanye->kapan_berakhir) ? '#' : route('donatur-kampanye.wakaf', ['kampanye' => $kampanye->id]) }}"
+                    class="{{ is_null($kampanye->kapan_berakhir) ? 'bg-blue-400 hover:bg-blue-400 cursor-not-allowed' : 'bg-blue-500 hover:bg-blue-400' }} text-white block w-full font-semibold text-sm rounded px-4 py-3 text-center">
+                    Wakaf
                     sekarang!
-                </button>
+                </a>
             </div>
         </div>
     </div>
@@ -84,6 +84,9 @@
             Donatur
         </h2>
         <div class="bg-gray-100 p-3 rounded-lg mb-3">
+            @if ($kampanye->donasi_count === 0)
+                <div class="text-xs uppercase text-gray-500 text-center">Jadilah yang pertama</div>
+            @endif
             @foreach ($kampanye->donasi as $item)
                 <div class="flex items-center justify-between mb-2 text-sm">
                     <div class="font-bold">{{ $item->name }}</div>

@@ -33,7 +33,7 @@ class Kampanye extends Model
     {
         $hari = \Carbon\Carbon::now()->diffInDays(\Carbon\Carbon::parse($this->tanggal_berakhir), false);
 
-        return $hari > 0 ? $hari . ' hari lagi' : 'Telah berakhir';
+        return $hari > 0 ? $hari . ' hari lagi' : null;
     }
 
     /**
