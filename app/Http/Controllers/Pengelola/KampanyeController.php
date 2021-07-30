@@ -7,6 +7,7 @@ use App\Http\Requests\KampanyeRequest;
 use App\Models\Kampanye;
 use App\Models\Kategori;
 use App\Models\User;
+use App\Notifications\KampanyeNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -123,8 +124,12 @@ class KampanyeController extends Controller
     public function publikasi(Kampanye $kampanye)
     {
         if (!is_null($kampanye->tanggal_publikasi)) {
-            abort(400, 'Kampanye sudah dipublikasi');
+            abort(404, 'Kampanye sudah dipublikasi');
         }
+
+        $lembaga = User::find($kampanye->lembaga_id);
+
+        $lembaga->notify(new KampanyeNotification('Persetujuan Publikasi', 'Kampanye yang anda ajukan telah disetujui', $kampanye->id));
 
         $kampanye->update([
             'tanggal_publikasi' => now()

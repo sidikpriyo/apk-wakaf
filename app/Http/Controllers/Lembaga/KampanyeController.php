@@ -128,7 +128,7 @@ class KampanyeController extends Controller
 
         // Check if active
         if (!is_null($kampanye->tanggal_publikasi)) {
-            abort(400, 'Kampanye aktif tidak bisa dihapus');
+            abort(404, 'Kampanye aktif tidak bisa dihapus');
         }
 
         $kampanye->delete();

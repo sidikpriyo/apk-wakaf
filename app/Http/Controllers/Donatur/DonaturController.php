@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Http\Controllers\Lembaga;
+namespace App\Http\Controllers\Donatur;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 
-class LembagaController extends Controller
+class DonaturController extends Controller
 {
     public function index()
     {
         $user = auth()->user();
-        return view('lembaga.profil.index', [
+        return view('donatur.profil.index', [
             'profil' => $user
         ]);
     }
@@ -19,7 +19,7 @@ class LembagaController extends Controller
     public function edit()
     {
         $user = auth()->user();
-        return view('lembaga.profil.edit', [
+        return view('donatur.profil.edit', [
             'profil' => $user
         ]);
     }
@@ -28,6 +28,6 @@ class LembagaController extends Controller
     {
         $profil->update($request->all());
 
-        return redirect()->route('lembaga-profil.index');
+        return redirect()->route('donatur-profil.index');
     }
 }
