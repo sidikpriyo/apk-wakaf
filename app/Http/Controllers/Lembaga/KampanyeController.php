@@ -125,6 +125,12 @@ class KampanyeController extends Controller
 
     public function destroy(Kampanye $kampanye)
     {
+
+        // Check if active
+        if (!is_null($kampanye->tanggal_publikasi)) {
+            abort(400, 'Kampanye aktif tidak bisa dihapus');
+        }
+
         $kampanye->delete();
 
         return redirect()->route('lembaga-kampanye.index');

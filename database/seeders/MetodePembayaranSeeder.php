@@ -34,7 +34,7 @@ class MetodePembayaranSeeder extends Seeder
             [
                 'nama' => 'Mandiri Virtual Account',
                 'kode' => 'mandiri',
-                'jenis_pembayaran' => 'transfer'
+                'jenis_pembayaran' => 'gateway'
             ],
             [
                 'nama' => 'BNI Virtual Account',

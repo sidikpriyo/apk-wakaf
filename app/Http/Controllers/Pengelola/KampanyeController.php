@@ -119,4 +119,17 @@ class KampanyeController extends Controller
 
         return redirect()->route('pengelola-kampanye.index');
     }
+
+    public function publikasi(Kampanye $kampanye)
+    {
+        if (!is_null($kampanye->tanggal_publikasi)) {
+            abort(400, 'Kampanye sudah dipublikasi');
+        }
+
+        $kampanye->update([
+            'tanggal_publikasi' => now()
+        ]);
+
+        return redirect()->route('pengelola-kampanye.index');
+    }
 }
