@@ -8,7 +8,7 @@
     <ul>
         <li class="mb-2 block text-sm text-gray-700 py-1.5 px-2 mx-4 hover:bg-gray-100 rounded bg-gray-100">
             <a href="{{ route('pengaturan') }}" aria-current="page"
-                class="nuxt-link-exact-active nuxt-link-active">Beranda</a>
+                >Beranda</a>
         </li>
     </ul>
 @endsection
@@ -104,7 +104,7 @@
 
     @can('donatur', User::class)
         <div class="grid grid-cols-3 gap-4">
-            <a href="{{ route('status-pembayaran.index') }}"
+            <a href="{{ route('donatur-profil.index') }}"
                 class="bg-white h-36 rounded-lg w-full flex items-center justify-center border border-gray-200">
                 <div class="flex items-center space-x-2">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">

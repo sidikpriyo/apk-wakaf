@@ -45,6 +45,11 @@
                         {{ __('Profil') }}
                     </x-dropdown-link>
                 @endcan
+                @can('donatur', User::class)
+                    <x-dropdown-link :href="route('donatur-profil.index')">
+                        {{ __('Profil') }}
+                    </x-dropdown-link>
+                @endcan
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
                     <x-dropdown-link :href="route('logout')"

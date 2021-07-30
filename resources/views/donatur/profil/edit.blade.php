@@ -1,13 +1,13 @@
 @extends('layouts.dashboard')
 
 @section('sidebar-title')
-    Kategori
+    Profil
 @endsection
 
 @section('sidebar-body')
     <ul>
         <li class="mb-2 block text-sm text-gray-700 py-1.5 px-2 mx-4 hover:bg-gray-100 rounded">
-            <a href="{{ route('kategori.index') }}" aria-current="page"
+            <a href="{{ route('donatur-profil.index') }}" aria-current="page"
                 >Beranda</a>
         </li>
     </ul>
@@ -16,21 +16,14 @@
 @section('body')
     <div class="bg-white rounded-lg border border-gray-200 p-6">
         <h2 class="font-semibold text-xl mb-6">Edit Kategori</h2>
-        <form action="{{ route('kategori.update', ['kategori' => $kategori->id]) }}" method="POST">
+        <form action="{{ route('donatur-profil.update', ['profil' => $profil->id]) }}" method="POST">
             @method('PATCH')
             @csrf
             <div>
                 <x-label for="nama" :value="__('Nama')" />
 
-                <x-input id="nama" class="block mt-1 w-full border border-gray-200 p-1" type="text" name="nama"
-                    :value="$kategori->nama" required autofocus />
-            </div>
-
-            <div class="mt-4">
-                <x-label for="kode" :value="__('Kode')" />
-
-                <x-input id="kode" class="block mt-1 w-full border border-gray-200 p-1" type="text" name="kode"
-                    :value="$kategori->kode" required />
+                <x-input id="name" class="block mt-1 w-full border border-gray-200 p-1" type="text" name="name"
+                    :value="$profil->name" required autofocus />
             </div>
 
             <div class="mt-6">
