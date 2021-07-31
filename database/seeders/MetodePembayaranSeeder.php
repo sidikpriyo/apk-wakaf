@@ -22,23 +22,23 @@ class MetodePembayaranSeeder extends Seeder
                 'jenis_pembayaran' => 'tunai'
             ],
             [
-                'nama' => 'Rekening BCA',
-                'kode' => 'bca',
+                'nama' => 'Transfer BCA',
+                'kode' => 'tranfer_bca',
                 'jenis_pembayaran' => 'transfer'
             ],
             [
-                'nama' => 'Rekening Mandiri',
-                'kode' => 'mandiri',
+                'nama' => 'Transfer Mandiri',
+                'kode' => 'tranfer_mandiri',
                 'jenis_pembayaran' => 'transfer'
             ],
             [
-                'nama' => 'Rekening BNI',
-                'kode' => 'bni',
+                'nama' => 'Transfer BNI',
+                'kode' => 'tranfer_bni',
                 'jenis_pembayaran' => 'transfer'
             ],
             [
-                'nama' => 'Rekening BRI',
-                'kode' => 'bri',
+                'nama' => 'Transfer BRI',
+                'kode' => 'tranfer_bri',
                 'jenis_pembayaran' => 'transfer'
             ],
             [
@@ -67,10 +67,10 @@ class MetodePembayaranSeeder extends Seeder
             $jenis_pembayaran_id = JenisPembayaran::where('kode', $item['jenis_pembayaran'])->value('id');
 
             MetodePembayaran::updateOrCreate([
+                'jenis_pembayaran_id' => $jenis_pembayaran_id,
                 'kode' => $item['kode'],
-                'jenis_pembayaran_id' => $jenis_pembayaran_id
             ], [
-                'nama' => $item['nama']
+                'nama' => $item['nama'],
             ]);
         }
     }
