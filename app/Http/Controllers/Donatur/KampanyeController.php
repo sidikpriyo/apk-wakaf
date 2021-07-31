@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Donatur;
 
 use App\Http\Controllers\Controller;
+use App\Models\Donasi;
 use App\Models\Kampanye;
 use App\Models\MetodePembayaran;
 use Illuminate\Http\Request;
@@ -35,11 +36,10 @@ class KampanyeController extends Controller
             return $item['jenis_pembayaran'];
         });
 
-        dd($metode_pembayaran);
-
         return view('donatur.kampanye.wakaf', [
             'kampanye' => $kampanye,
-            'pembayaran' => $metode_pembayaran,
+            'pembayaran' => $pembayaran,
+            'metode_pembayaran' => $metode_pembayaran,
         ]);
     }
 
@@ -51,5 +51,23 @@ class KampanyeController extends Controller
             $result[$key][] = $i;
         }
         return $result;
+    }
+
+    public function store($id, Request $request)
+    {
+        $this->validate($request, [
+            'nominal' => 'required|int',
+            'pembayaran_id' => 'required|int',
+            'catatan' => 'nullable|string',
+        ]);
+
+        $request->merge([
+            'donatur_id' => auth()->id(),
+            'kampanye_id' => $id
+        ]);
+
+        $donasi = Donasi::create($request->all());
+
+        return redirect()->route('donatur-donasi.show', ['donasi' => $donasi->id]);
     }
 }
