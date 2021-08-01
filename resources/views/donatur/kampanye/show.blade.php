@@ -83,19 +83,21 @@
         <h2 class="text-base font-bold sm:text-lg md:text-xl mb-4">
             Donatur
         </h2>
-        <div class="bg-gray-100 p-3 rounded-lg mb-3">
-            @if ($kampanye->donasi_count === 0)
+        @if ($kampanye->donasi_count === 0)
+            <div class="bg-gray-100 p-3 rounded-lg mb-3">
                 <div class="text-xs uppercase text-gray-500 text-center">Jadilah yang pertama</div>
-            @endif
-            @foreach ($kampanye->donasi as $item)
-                <div class="flex items-center justify-between mb-2 text-sm">
+            </div>
+        @endif
+        @foreach ($kampanye->donasi as $item)
+            <div class=" bg-gray-100 p-3 rounded-lg mb-3">
+                <div class="flex items-center justify-between text-sm">
                     <div class="font-bold">{{ $item->name }}</div>
                     <div class="font-light text-gray-700">
                         {{ \Carbon\Carbon::parse($item->created_at)->format('d/m/Y') }}
                     </div>
                 </div>
                 <p class="text-gray-700 text-xs">Donasi Rp {{ number_format($item->nominal) }}</p>
-            @endforeach
-        </div>
+            </div>
+        @endforeach
     </div>
 @endsection

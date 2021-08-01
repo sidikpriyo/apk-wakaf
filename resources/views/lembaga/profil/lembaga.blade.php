@@ -25,6 +25,23 @@
             </div>
 
             <div class="mb-4">
+                <x-label for="rekening" :value="__('Rekening')" />
+
+                <x-input id="rekening" class="block mt-1 w-full border border-gray-200 p-1" type="text" name="rekening"
+                    :value="$lembaga->rekening" required autofocus />
+            </div>
+
+            <div class="mb-4">
+                <x-label for="bank_id" :value="__('Bank')" />
+
+                <x-select name="bank_id" id="bank_id">
+                    @foreach ($bank as $item)
+                        <option value="{{ $item->id }}">{{ $item->nama }}</option>
+                    @endforeach
+                </x-select>
+            </div>
+
+            <div class="mb-4">
                 <x-label for="alamat" :value="__('Alamat')" />
 
                 <x-textarea id="alamat" class="block mt-1 w-full border border-gray-200 p-1" type="text" name="alamat"

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Lembaga;
 
 use App\Http\Controllers\Controller;
+use App\Models\Bank;
 use App\Models\Lembaga;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -47,8 +48,11 @@ class LembagaController extends Controller
             abort(404);
         }
 
+        $bank = Bank::select('id', 'nama')->get();
+
         return view('lembaga.profil.lembaga', [
-            'lembaga' => $lembaga
+            'lembaga' => $lembaga,
+            'bank' => $bank,
         ]);
     }
 }

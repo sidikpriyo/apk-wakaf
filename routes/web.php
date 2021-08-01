@@ -26,6 +26,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 // Pengelola
 Route::prefix('pengelola')->middleware(['auth', 'role:pengelola'])->group(function () {
+    Route::resource('/bank', \App\Http\Controllers\Pengelola\BankController::class);
+    Route::resource('/rekening', \App\Http\Controllers\Pengelola\RekeningController::class);
     Route::resource('/lembaga', \App\Http\Controllers\Pengelola\LembagaController::class);
     Route::resource('/donatur', \App\Http\Controllers\Pengelola\DonaturController::class);
     Route::resource('/kategori', \App\Http\Controllers\Pengelola\KategoriController::class);

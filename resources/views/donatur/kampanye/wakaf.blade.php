@@ -43,9 +43,10 @@
                 <div class="border border-gray-200 rounded-lg divide-solid divide-y divide-gray-200">
                     @foreach ($metode_pembayaran['gateway'] as $item)
                         <div class="flex items-center space-x-2 text-sm p-2">
-                            <input x-model="pembayaranId" id="{{ $item['kode'] }}" type="radio" name="pembayaran_id"
-                                value="{{ $item['id'] }}" />
-                            <label class="cursor-pointer" for="{{ $item['kode'] }}">{{ $item['nama'] }}</label>
+                            <input x-model="pembayaranId" id="{{ $item['kode'] . '-' . $item['id'] }}" type="radio"
+                                name="pembayaran_id" value="{{ $item['id'] }}" />
+                            <label class="cursor-pointer"
+                                for="{{ $item['kode'] . '-' . $item['id'] }}">{{ $item['nama'] }}</label>
                         </div>
                     @endforeach
                 </div>
@@ -56,9 +57,10 @@
                 <div class="border border-gray-200 rounded-lg divide-solid divide-y divide-gray-200">
                     @foreach ($metode_pembayaran['transfer'] as $item)
                         <div class="flex items-center space-x-2 text-sm p-2">
-                            <input x-model="pembayaranId" id="{{ $item['kode'] }}" type="radio" name="pembayaran_id"
-                                value="{{ $item['id'] }}" />
-                            <label class="cursor-pointer" for="{{ $item['kode'] }}">{{ $item['nama'] }}</label>
+                            <input x-model="pembayaranId" id="{{ $item['kode'] . '-' . $item['id'] }}" type="radio"
+                                name="pembayaran_id" value="{{ $item['id'] }}" />
+                            <label class="cursor-pointer"
+                                for="{{ $item['kode'] . '-' . $item['id'] }}">{{ $item['nama'] }}</label>
                         </div>
                     @endforeach
                 </div>
@@ -68,9 +70,10 @@
                 <div class="border border-gray-200 rounded-lg divide-solid divide-y divide-gray-200">
                     @foreach ($metode_pembayaran['tunai'] as $item)
                         <div class="flex items-center space-x-2 text-sm p-2">
-                            <input x-model="pembayaranId" id="{{ $item['kode'] }}" type="radio" name="pembayaran_id"
-                                value="{{ $item['id'] }}" />
-                            <label class="cursor-pointer" for="{{ $item['kode'] }}">{{ $item['nama'] }}</label>
+                            <input x-model="pembayaranId" id="{{ $item['kode'] . '-' . $item['id'] }}" type="radio"
+                                name="pembayaran_id" value="{{ $item['id'] }}" />
+                            <label class="cursor-pointer"
+                                for="{{ $item['kode'] . '-' . $item['id'] }}">{{ $item['nama'] }}</label>
                         </div>
                     @endforeach
                 </div>
