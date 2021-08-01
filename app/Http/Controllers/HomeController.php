@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kampanye;
+use App\Models\MetodePembayaran;
 use App\Models\User;
 use Illuminate\Http\Request;
 

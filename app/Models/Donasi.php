@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -31,5 +32,16 @@ class Donasi extends Model
     public function kampanye()
     {
         return $this->belongsTo(Kampanye::class, 'kampanye_id');
+    }
+
+    /**
+     * Filter Lunas
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeLunas(Builder $query)
+    {
+        return $query->whereNotNull('completed_at');
     }
 }
