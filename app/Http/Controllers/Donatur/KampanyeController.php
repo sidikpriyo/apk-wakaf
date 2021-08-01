@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Donatur;
 
-use App\Events\DonasiDibuat;
+use App\Events\DonasiEvent;
 use App\Http\Controllers\Controller;
 use App\Models\Donasi;
 use App\Models\Kampanye;
@@ -70,7 +70,7 @@ class KampanyeController extends Controller
         ]);
 
         $donasi = Donasi::create($request->all());
-        event(new DonasiDibuat($donasi));
+        event(new DonasiEvent($donasi));
 
         return redirect()->route('donatur-donasi.show', ['donasi' => $donasi->id]);
     }

@@ -2,8 +2,7 @@
 
 namespace App\Providers;
 
-use App\Events\DonasiDibuat;
-use App\Events\DonasiDikonfirmasi;
+use App\Events\DonasiEvent;
 use App\Events\KampanyeDibuat;
 use App\Events\KampanyeDipublikasi;
 use App\Listeners\CatatRiwayatDonasi;
@@ -27,11 +26,7 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
-        DonasiDibuat::class => [
-            CatatRiwayatDonasi::class,
-            // Kirim petuntunjuk pembayaran dll
-        ],
-        DonasiDikonfirmasi::class => [
+        DonasiEvent::class => [
             CatatRiwayatDonasi::class,
             PeriksaStatusPembayaran::class,
             KirimNotifikasiDonatur::class,

@@ -2,7 +2,7 @@
 
 namespace App\Listeners;
 
-use App\Events\DonasiDikonfirmasi;
+use App\Events\DonasiEvent;
 use App\Models\MetodePembayaran;
 use App\Models\StatusPembayaran;
 use App\Models\User;
@@ -19,7 +19,7 @@ class KirimNotifikasiDonatur implements ShouldQueue
      * @param  object  $event
      * @return void
      */
-    public function handle(DonasiDikonfirmasi $event)
+    public function handle(DonasiEvent $event)
     {
         try {
             $donasi = $event->donasi;
@@ -28,7 +28,7 @@ class KirimNotifikasiDonatur implements ShouldQueue
 
             // Kirim Notifikasi
             $donatur = User::find($donasi->donatur_id);
-            $donatur->notify(new DonasiNotification($status_pembayaran, 'Donasi anda sebesar ' . $donasi->nominal . ' dengan metode ' . $metode_pembayaran, $donasi->id));
+            $donatur->notify(new DonasiNotification($status_pembayaran, 'Donasi sebesar Rp ' . number_format($donasi->nominal) . ' dengan metode ' . $metode_pembayaran, $donasi->id));
         } catch (\Throwable $th) {
             Log::debug($th->getMessage());
         }

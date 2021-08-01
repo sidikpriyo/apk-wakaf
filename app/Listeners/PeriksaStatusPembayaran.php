@@ -2,7 +2,7 @@
 
 namespace App\Listeners;
 
-use App\Events\DonasiDikonfirmasi;
+use App\Events\DonasiEvent;
 use App\Models\Kampanye;
 use App\Models\StatusPembayaran;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -18,7 +18,7 @@ class PeriksaStatusPembayaran implements ShouldQueue
      * @param  object  $event
      * @return void
      */
-    public function handle(DonasiDikonfirmasi $event)
+    public function handle(DonasiEvent $event)
     {
         try {
             $donasi = $event->donasi;

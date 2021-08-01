@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Lembaga;
 
-use App\Events\DonasiDibuat;
+use App\Events\DonasiEvent;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\DonasiRequest;
 use App\Models\Donasi;
@@ -67,7 +67,7 @@ class DonasiController extends Controller
     public function store(DonasiRequest $request)
     {
         $donasi = Donasi::create($request->all());
-        event(new DonasiDibuat($donasi));
+        event(new DonasiEvent($donasi));
 
         return redirect()->route('lembaga-donasi.index');
     }

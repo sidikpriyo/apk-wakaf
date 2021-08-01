@@ -75,7 +75,7 @@ class HomeController extends Controller
                 break;
 
             case 'donasi':
-                $link = $user->role === 'lembaga' ? route('lembaga-donasi.show', ['donasi' => $notifikasi->data['external_id']]) : route('pengelola-donasi.show', ['donasi' => $notifikasi->data['external_id']]);
+                $link = route('donatur-donasi.show', ['donasi' => $notifikasi->data['external_id']]);
                 break;
 
             default:

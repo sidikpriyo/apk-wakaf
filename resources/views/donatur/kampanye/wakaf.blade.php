@@ -107,7 +107,7 @@
 
                     <textarea name="catatan" id="catatan" rows="5" id="catatan"
                         class="p-4 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 block mt-4 w-full border border-gray-200 text-xs"
-                        placeholder="Tulis dona untuk penggalang dana atau diri anda sendiri."></textarea>
+                        placeholder="Tulis doa untuk penggalang dana atau diri anda sendiri."></textarea>
                 </div>
 
                 <button type="submit" class="bg-blue-500 text-white text-xs uppercase block py-3 rounded-lg px-2 w-full">

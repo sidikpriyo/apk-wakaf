@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers\Pengelola;
 
-use App\Events\DonasiDibuat;
-use App\Events\DonasiDikonfirmasi;
+use App\Events\DonasiEvent;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\DonasiRequest;
 use App\Models\Donasi;
@@ -60,7 +59,7 @@ class DonasiController extends Controller
     public function store(DonasiRequest $request)
     {
         $donasi = Donasi::create($request->all());
-        event(new DonasiDibuat($donasi));
+        event(new DonasiEvent($donasi));
 
         return redirect()->route('pengelola-donasi.index');
     }
@@ -83,7 +82,7 @@ class DonasiController extends Controller
             'completed_at' => now()
         ]);
 
-        event(new DonasiDikonfirmasi($donasi));
+        event(new DonasiEvent($donasi));
 
         return redirect()->back();
     }
