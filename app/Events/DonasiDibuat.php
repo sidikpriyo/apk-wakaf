@@ -2,6 +2,7 @@
 
 namespace App\Events;
 
+use App\Models\Donasi;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
@@ -17,7 +18,7 @@ class DonasiDibuat
      *
      * @return void
      */
-    public function __construct($donasi)
+    public function __construct(Donasi $donasi)
     {
         $this->donasi = $donasi;
     }

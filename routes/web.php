@@ -36,6 +36,7 @@ Route::prefix('pengelola')->middleware(['auth', 'role:pengelola'])->group(functi
     Route::resource('/donasi', \App\Http\Controllers\Pengelola\DonasiController::class)->names('pengelola-donasi');
 
     Route::get('/kampanye/{kampanye}/publikasi', [\App\Http\Controllers\Pengelola\KampanyeController::class, 'publikasi'])->name('pengelola-kampanye.publikasi');
+    Route::get('/donasi/{donasi}/verifikasi', [\App\Http\Controllers\Pengelola\DonasiController::class, 'verifikasi'])->name('pengelola-donasi.verifikasi');
 });
 
 // Donatur

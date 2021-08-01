@@ -6,9 +6,11 @@ use App\Events\DonasiDibuat;
 use App\Events\DonasiDikonfirmasi;
 use App\Events\KampanyeDibuat;
 use App\Events\KampanyeDipublikasi;
+use App\Listeners\CatatRiwayatDonasi;
 use App\Listeners\KirimNotifikasiDonatur;
 use App\Listeners\KirimNotifikasiLembaga;
 use App\Listeners\KirimNotifikasiPengelola;
+use App\Listeners\PeriksaStatusPembayaran;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -26,10 +28,13 @@ class EventServiceProvider extends ServiceProvider
             SendEmailVerificationNotification::class,
         ],
         DonasiDibuat::class => [
+            CatatRiwayatDonasi::class,
             // Kirim petuntunjuk pembayaran dll
         ],
         DonasiDikonfirmasi::class => [
-            KirimNotifikasiDonatur::class
+            CatatRiwayatDonasi::class,
+            PeriksaStatusPembayaran::class,
+            KirimNotifikasiDonatur::class,
         ],
         KampanyeDibuat::class => [
             KirimNotifikasiPengelola::class
