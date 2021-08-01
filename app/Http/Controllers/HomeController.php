@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kampanye;
+use App\Models\MetodePembayaran;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -74,7 +75,7 @@ class HomeController extends Controller
                 break;
 
             case 'donasi':
-                $link = $user->role === 'lembaga' ? route('lembaga-donasi.show', ['donasi' => $notifikasi->data['external_id']]) : route('pengelola-donasi.show', ['donasi' => $notifikasi->data['external_id']]);
+                $link = route('donatur-donasi.show', ['donasi' => $notifikasi->data['external_id']]);
                 break;
 
             default:

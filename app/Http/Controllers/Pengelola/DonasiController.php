@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Pengelola;
 
+use App\Events\DonasiEvent;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\DonasiRequest;
 use App\Models\Donasi;
@@ -57,7 +58,8 @@ class DonasiController extends Controller
 
     public function store(DonasiRequest $request)
     {
-        Donasi::create($request->all());
+        $donasi = Donasi::create($request->all());
+        event(new DonasiEvent($donasi));
 
         return redirect()->route('pengelola-donasi.index');
     }
@@ -67,5 +69,21 @@ class DonasiController extends Controller
         $donasi->delete();
 
         return redirect()->route('pengelola-donasi.index');
+    }
+
+    public function verifikasi(Donasi $donasi)
+    {
+        if (!is_null($donasi->completed_at) || !is_null($donasi->expired_at)) {
+            abort(404);
+        }
+
+        $donasi->update([
+            'status_pembayaran_id' => 2,
+            'completed_at' => now()
+        ]);
+
+        event(new DonasiEvent($donasi));
+
+        return redirect()->back();
     }
 }

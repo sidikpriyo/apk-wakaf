@@ -26,7 +26,7 @@
                     :value="$donasi->nominal" required autofocus />
             </div>
 
-            <div>
+            <div class="mt-4">
                 <x-label for="catatan" :value="__('Catatan')" />
 
                 <x-input id="catatan" class="block mt-1 w-full border border-gray-200 p-1" type="text" name="catatan"

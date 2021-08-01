@@ -95,18 +95,19 @@
                 </div>
 
                 <select name="pembayaran_id" x-model="pembayaranId"
-                    class="form-select border border-gray-200 rounded-lg w-full text-sm">
+                    class="form-select border border-gray-200 rounded-lg w-full text-sm mb-2">
                     @foreach ($pembayaran as $item)
                         <option value="{{ $item['id'] }}">{{ $item['nama'] }}</option>
                     @endforeach
                 </select>
 
+                <hr class="border-gray-200 my-4">
                 <div class="mb-4">
-                    <x-label for="catatan" :value="__('Catatan')" />
+                    <x-label for="catatan" :value="__('Catatan (Opsional):')" />
 
                     <textarea name="catatan" id="catatan" rows="5" id="catatan"
-                        class="rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 block mt-4 w-full border border-gray-200 p-1 text-xs"
-                        placeholder="Tulis dona untuk penggalang dana atau diri anda sendiri."></textarea>
+                        class="p-4 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 block mt-4 w-full border border-gray-200 text-xs"
+                        placeholder="Tulis doa untuk penggalang dana atau diri anda sendiri."></textarea>
                 </div>
 
                 <button type="submit" class="bg-blue-500 text-white text-xs uppercase block py-3 rounded-lg px-2 w-full">

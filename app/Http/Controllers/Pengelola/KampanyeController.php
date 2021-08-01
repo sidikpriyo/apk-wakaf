@@ -2,15 +2,13 @@
 
 namespace App\Http\Controllers\Pengelola;
 
+use App\Events\KampanyeDibuat;
+use App\Events\KampanyeDipublikasi;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\KampanyeRequest;
-use App\Jobs\Lembaga\NotifikasiKampanyeJobs;
 use App\Models\Kampanye;
 use App\Models\Kategori;
 use App\Models\User;
-use App\Notifications\KampanyeNotification;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 
 class KampanyeController extends Controller
 {
@@ -86,31 +84,28 @@ class KampanyeController extends Controller
 
     public function store(KampanyeRequest $request)
     {
-        try {
-            $data = $request->only([
-                'nama',
-                'keterangan',
-                'deskripsi',
-                'kebutuhan',
-                'tanggal_berakhir',
-                'lembaga_id',
-                'kategori_id',
-            ]);
+        $data = $request->only([
+            'nama',
+            'keterangan',
+            'deskripsi',
+            'kebutuhan',
+            'tanggal_berakhir',
+            'lembaga_id',
+            'kategori_id',
+        ]);
 
-            $path = $request->file('gambar')->storePubliclyAs(
-                'kampanye',
-                $request->user()->id . "-" . time(),
-                'public'
-            );
+        $path = $request->file('gambar')->storePubliclyAs(
+            'kampanye',
+            $request->user()->id . "-" . time(),
+            'public'
+        );
 
-            $data = array_merge([
-                'gambar' => $path
-            ], $data);
+        $data = array_merge([
+            'gambar' => $path
+        ], $data);
 
-            Kampanye::create($data);
-        } catch (\Throwable $th) {
-            //throw $th;
-        }
+        $kampanye = Kampanye::create($data);
+        event(new KampanyeDibuat($kampanye));
 
         return redirect()->route('pengelola-kampanye.index');
     }
@@ -128,12 +123,12 @@ class KampanyeController extends Controller
             abort(404, 'Kampanye sudah dipublikasi');
         }
 
-        // Notifikasi Lembaga
-        NotifikasiKampanyeJobs::dispatch($kampanye);
 
         $kampanye->update([
             'tanggal_publikasi' => now()
         ]);
+
+        event(new KampanyeDipublikasi($kampanye));
 
         return redirect()->route('pengelola-kampanye.index');
     }

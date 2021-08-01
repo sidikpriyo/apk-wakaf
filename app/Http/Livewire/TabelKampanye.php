@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\Kampanye;
+use App\Models\Kategori;
 use Mediconesystems\LivewireDatatables\BooleanColumn;
 use Mediconesystems\LivewireDatatables\Column;
 use Mediconesystems\LivewireDatatables\DateColumn;
@@ -38,23 +39,34 @@ class TabelKampanye extends LivewireDatatable
         return [
             NumberColumn::name('id')
                 ->label('ID')
+                ->filterable()
                 ->linkTo($this->linkTo, 10),
 
             Column::name('nama')
                 ->defaultSort()
+                ->filterable()
                 ->searchable(),
 
-            Column::name('kategori.nama')->label('Kategori'),
+            Column::name('kategori.nama')->filterable($this->kategori)->label('Kategori'),
 
-            NumberColumn::name('kebutuhan'),
+            BooleanColumn::name('tanggal_publikasi')->label('Publikasi')->filterable(),
 
-            NumberColumn::name('terkumpul'),
+            Column::name('lembaga.name')->label('Lembaga')->filterable()->hide(),
 
-            BooleanColumn::name('tanggal_publikasi')->label('Disetujui'),
+            NumberColumn::callback('kebutuhan', function ($kebutuhan) {
+                return "Rp" . number_format($kebutuhan);
+            })->label('Kebutuhan')->filterable(),
 
-            Column::name('lembaga.name')->label('Lembaga'),
+            NumberColumn::callback('terkumpul', function ($terkumpul) {
+                return "Rp" . number_format($terkumpul);
+            })->label('Terkumpul')->filterable(),
 
-            DateColumn::name('tanggal_berakhir')->label('Berakhir')
+            DateColumn::name('tanggal_berakhir')->label('Berakhir')->filterable()
         ];
+    }
+
+    public function getKategoriProperty()
+    {
+        return Kategori::pluck('nama');
     }
 }
