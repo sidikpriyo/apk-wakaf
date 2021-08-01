@@ -59,7 +59,9 @@ class TabelDonasi extends LivewireDatatable
 
             Column::name('donatur.name')->label('Donatur'),
 
-            NumberColumn::name('nominal'),
+            NumberColumn::callback('nominal', function ($nominal) {
+                return 'Rp ' . number_format($nominal);
+            })->label('Nominal'),
 
             Column::name('metode.nama')->label('Metode Pembayaran'),
 

@@ -16,7 +16,7 @@ class CreateDonasisTable extends Migration
         Schema::create('donasi', function (Blueprint $table) {
             $table->id();
             $table->integer('nominal');
-            $table->text('catatan');
+            $table->text('catatan')->nullable();
             $table->unsignedBigInteger('donatur_id');
             $table->unsignedBigInteger('kampanye_id');
             $table->unsignedBigInteger('pembayaran_id')->nullable();
