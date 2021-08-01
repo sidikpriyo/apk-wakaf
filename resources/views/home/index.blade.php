@@ -27,7 +27,7 @@
                                 class="bg-blue-500 absolute top-0 -mt-3 flex items-center px-3 py-1.5 leading-none w-auto rounded-xl text-xs uppercase text-white">
                                 <span>{{ $item->kategori()->first()->nama }}</span>
                             </div>
-                            <h2 class="text-base font-bold sm:text-lg md:text-xl">
+                            <h2 class="text-base font-bold sm:text-lg md:text-xl truncate">
                                 <a href="{{ route('donatur-kampanye.show', ['kampanye' => $item->id]) }}">
                                     {{ $item->nama }}
                                 </a>

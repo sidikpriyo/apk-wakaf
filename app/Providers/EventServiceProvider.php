@@ -2,6 +2,13 @@
 
 namespace App\Providers;
 
+use App\Events\DonasiDibuat;
+use App\Events\DonasiDikonfirmasi;
+use App\Events\KampanyeDibuat;
+use App\Events\KampanyeDipublikasi;
+use App\Listeners\KirimNotifikasiDonatur;
+use App\Listeners\KirimNotifikasiLembaga;
+use App\Listeners\KirimNotifikasiPengelola;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -18,6 +25,18 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
+        DonasiDibuat::class => [
+            // Kirim petuntunjuk pembayaran dll
+        ],
+        DonasiDikonfirmasi::class => [
+            KirimNotifikasiDonatur::class
+        ],
+        KampanyeDibuat::class => [
+            KirimNotifikasiPengelola::class
+        ],
+        KampanyeDipublikasi::class => [
+            KirimNotifikasiLembaga::class
+        ]
     ];
 
     /**

@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Lembaga;
 
+use App\Events\KampanyeDibuat;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\KampanyeRequest;
-use App\Jobs\Pengelola\NotifikasiKampanyeJobs;
 use App\Models\Kampanye;
 use App\Models\Kategori;
 use App\Models\User;
@@ -96,33 +96,29 @@ class KampanyeController extends Controller
 
     public function store(KampanyeRequest $request)
     {
-        try {
-            $lembaga = auth()->user();
-            $data = $request->only([
-                'nama',
-                'keterangan',
-                'deskripsi',
-                'kebutuhan',
-                'tanggal_berakhir',
-                'kategori_id',
-            ]);
+        $lembaga = auth()->user();
+        $data = $request->only([
+            'nama',
+            'keterangan',
+            'deskripsi',
+            'kebutuhan',
+            'tanggal_berakhir',
+            'kategori_id',
+        ]);
 
-            $path = $request->file('gambar')->storePubliclyAs(
-                'kampanye',
-                $lembaga->id . "-" . time(),
-                'public'
-            );
+        $path = $request->file('gambar')->storePubliclyAs(
+            'kampanye',
+            $lembaga->id . "-" . time(),
+            'public'
+        );
 
-            $data = array_merge([
-                'lembaga_id' => $lembaga->id,
-                'gambar' => $path
-            ], $data);
+        $data = array_merge([
+            'lembaga_id' => $lembaga->id,
+            'gambar' => $path
+        ], $data);
 
-            $kampanye = Kampanye::create($data);
-            NotifikasiKampanyeJobs::dispatch($lembaga, $kampanye);
-        } catch (\Throwable $th) {
-            //throw $th;
-        }
+        $kampanye = Kampanye::create($data);
+        event(new KampanyeDibuat($kampanye));
 
         return redirect()->route('lembaga-kampanye.index');
     }
