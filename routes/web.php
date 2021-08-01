@@ -49,6 +49,8 @@ Route::prefix('donatur')->middleware(['auth', 'role:donatur'])->group(function (
 
     Route::get('/kampanye/{kampanye}/wakaf', [\App\Http\Controllers\Donatur\KampanyeController::class, 'wakaf'])->name('donatur-kampanye.wakaf');
     Route::post('/kampanye/{id}/wakaf', [\App\Http\Controllers\Donatur\KampanyeController::class, 'store'])->name('donatur-kampanye.store');
+
+    Route::get('/donasi/{donasi}/pembayaran', [\App\Http\Controllers\Donatur\DonasiController::class, 'pembayaran'])->name('donatur-donasi.pembayaran');
 });
 
 // Lembaga

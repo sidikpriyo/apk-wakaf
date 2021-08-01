@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Lembaga;
 use App\Events\DonasiEvent;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\DonasiRequest;
+use App\Jobs\DonasiJobs;
 use App\Models\Donasi;
 use App\Models\Kampanye;
 use App\Models\User;
@@ -68,6 +69,8 @@ class DonasiController extends Controller
     {
         $donasi = Donasi::create($request->all());
         event(new DonasiEvent($donasi));
+
+        DonasiJobs::dispatch($donasi);
 
         return redirect()->route('lembaga-donasi.index');
     }
