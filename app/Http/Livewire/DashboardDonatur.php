@@ -4,7 +4,6 @@ namespace App\Http\Livewire;
 
 use App\Charts\DonaturChart;
 use App\Models\Donasi;
-use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
 class DashboardDonatur extends Component
