@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Donatur;
 
 use App\Http\Controllers\Controller;
 use App\Models\Donasi;
+use App\Models\MetodePembayaran;
 use App\Models\RekeningDonasi;
 use Illuminate\Http\Request;
 
@@ -27,10 +28,39 @@ class DonasiController extends Controller
 
     public function pembayaran(Donasi $donasi)
     {
-        $rekening = RekeningDonasi::selectRaw('rekening.nama as nama, rekening.nomor as nomor, bank.nama as bank')->join('rekening', 'rekening.id', 'rekening_donasi.rekening_id')->join('bank', 'bank.id', 'rekening.bank_id')->where('donasi_id', $donasi->id)->first();
-        return view('donatur.donasi.pembayaran', [
+        $metode = $this->getMetodePembayaran($donasi->pembayaran_id);
+        $data = [
             'donasi' => $donasi,
-            'rekening' => $rekening,
-        ]);
+            'metode' => $metode,
+        ];
+
+        switch ($metode) {
+            case 'transfer':
+                $rekening = $this->getRekening($donasi->id);
+                $data = array_merge([
+                    'rekening' => $rekening
+                ], $data);
+                break;
+
+            case 'gateway':
+
+                break;
+
+            default:
+                # code...
+                break;
+        }
+
+        return view('donatur.donasi.pembayaran', $data);
+    }
+
+    private function getMetodePembayaran($pembayaran_id)
+    {
+        return MetodePembayaran::join('jenis_pembayaran', 'jenis_pembayaran.id', 'pembayaran.jenis_pembayaran_id')->where('pembayaran.id', $pembayaran_id)->value('jenis_pembayaran.kode');
+    }
+
+    private function getRekening($donasi_id)
+    {
+        return RekeningDonasi::selectRaw('rekening.nama as nama, rekening.nomor as nomor, bank.nama as bank')->join('rekening', 'rekening.id', 'rekening_donasi.rekening_id')->join('bank', 'bank.id', 'rekening.bank_id')->where('donasi_id', $donasi_id)->first();
     }
 }
