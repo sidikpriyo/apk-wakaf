@@ -51,7 +51,7 @@ Route::prefix('donatur')->middleware(['auth', 'role:donatur'])->group(function (
 // Lembaga
 Route::prefix('lembaga')->middleware(['auth', 'role:lembaga'])->group(function () {
     Route::resource('/kampanye', \App\Http\Controllers\Lembaga\KampanyeController::class)->names('lembaga-kampanye');
-    Route::resource('/donasi', \App\Http\Controllers\Lembaga\DonasiController::class)->names('lembaga-donasi');
+    Route::resource('/donasi', \App\Http\Controllers\Lembaga\DonasiController::class)->names('lembaga-donasi')->only(['index', 'show']);
     Route::resource('/profil', \App\Http\Controllers\Lembaga\LembagaController::class)->names('lembaga-profil')->only(['index', 'edit', 'update', 'store']);
 
     Route::get('/profil/{profil}/lembaga/{lembaga}', [\App\Http\Controllers\Lembaga\LembagaController::class, 'lembaga'])->name('lembaga-profil.lembaga');

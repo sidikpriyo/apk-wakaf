@@ -3,6 +3,8 @@
 namespace App\Http\Livewire;
 
 use App\Models\Donasi;
+use App\Models\MetodePembayaran;
+use App\Models\StatusPembayaran;
 use Mediconesystems\LivewireDatatables\Column;
 use Mediconesystems\LivewireDatatables\DateColumn;
 use Mediconesystems\LivewireDatatables\Http\Livewire\LivewireDatatable;
@@ -21,7 +23,8 @@ class TabelDonasi extends LivewireDatatable
     {
         switch (auth()->user()->role) {
             case 'lembaga':
-                $this->beforeTableSlot = 'lembaga.donasi.button';
+                // $this->beforeTableSlot = 'lembaga.donasi.button';
+                $this->beforeTableSlot = '';
                 $this->linkTo = 'lembaga/donasi';
                 break;
             case 'donatur':
@@ -51,21 +54,31 @@ class TabelDonasi extends LivewireDatatable
         return [
             NumberColumn::name('id')
                 ->label('ID')
-                ->linkTo($this->linkTo, 10),
-
-            DateColumn::name('created_at')->label('Tanggal')->defaultSort(),
-
-            Column::name('kampanye.nama')->label('Kampanye')->searchable(),
-
-            Column::name('donatur.name')->label('Donatur'),
+                ->linkTo($this->linkTo, 10)->filterable(),
 
             NumberColumn::callback('nominal', function ($nominal) {
                 return 'Rp ' . number_format($nominal);
-            })->label('Nominal'),
+            })->label('Nominal')->filterable(),
 
-            Column::name('metode.nama')->label('Metode Pembayaran'),
+            Column::name('kampanye.nama')->label('Kampanye')->searchable()->filterable(),
 
-            Column::name('status.nama')->label('Status Pembayaran'),
+            Column::name('donatur.name')->label('Donatur')->filterable()->hide(),
+
+            Column::name('metode.nama')->label('Metode Pembayaran')->filterable($this->pembayaran),
+
+            Column::name('status.nama')->label('Status Pembayaran')->filterable($this->status),
+
+            DateColumn::name('created_at')->label('Tanggal')->defaultSort()->filterable(),
         ];
+    }
+
+    public function getPembayaranProperty()
+    {
+        return MetodePembayaran::pluck('nama');
+    }
+
+    public function getStatusProperty()
+    {
+        return StatusPembayaran::pluck('nama');
     }
 }
