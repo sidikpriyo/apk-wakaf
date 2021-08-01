@@ -12,4 +12,9 @@ class Lembaga extends Model
     protected $table = "lembaga";
 
     protected $guarded = [];
+
+    public function bank()
+    {
+        return $this->belongsTo(Bank::class, 'bank_id');
+    }
 }
