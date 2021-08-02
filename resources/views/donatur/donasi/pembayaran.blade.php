@@ -124,4 +124,7 @@
             @endif
         </div>
     @endif
+    @if ($metode === 'gateway')
+        {{ $donasi->transaksi->response ?? '-' }}
+    @endif
 @endsection

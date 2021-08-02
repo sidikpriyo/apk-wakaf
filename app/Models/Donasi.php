@@ -34,6 +34,11 @@ class Donasi extends Model
         return $this->belongsTo(Kampanye::class, 'kampanye_id');
     }
 
+    public function transaksi()
+    {
+        return $this->hasOne(DonasiTransaksi::class, 'donasi_id');
+    }
+
     /**
      * Filter Lunas
      *

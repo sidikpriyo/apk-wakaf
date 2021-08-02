@@ -32,13 +32,13 @@ class PeriksaStatusPembayaran implements ShouldQueue
                     $this->verifikasiPembayaran($donasi);
                     break;
                 case 'capture':
-                    # code...
+                    $this->verifikasiPembayaran($donasi);
                     break;
                 case 'deny':
-                    # code...
+                    $this->tutupPembayaran($donasi);
                     break;
                 case 'cancel':
-                    # code...
+                    $this->tutupPembayaran($donasi);
                     break;
                 case 'expire':
                     $this->tutupPembayaran($donasi);
