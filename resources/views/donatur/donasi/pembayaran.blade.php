@@ -86,16 +86,18 @@
                         {{ $donasi->metode->nama ?? '-' }}
                     </dd>
                 </div>
-                <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                    <dt class="text-sm leading-5 font-medium text-gray-500">
-                        Bukti Pembayaran
-                    </dt>
-                    <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
-                        <a class="text-indigo-500 underline" href="{{ asset('storage/' . $rekening->bukti) }}">
-                            {{ $rekening->bukti ?? '-' }}
-                        </a>
-                    </dd>
-                </div>
+                @if (!is_null($rekening->bukti))
+                    <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                        <dt class="text-sm leading-5 font-medium text-gray-500">
+                            Bukti Pembayaran
+                        </dt>
+                        <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
+                            <a class="text-indigo-500 underline" href="{{ asset('storage/' . $rekening->bukti) }}">
+                                {{ $rekening->bukti ?? '-' }}
+                            </a>
+                        </dd>
+                    </div>
+                @endif
             </dl>
             @if (is_null($rekening->bukti))
                 <form action="{{ route('donatur-donasi.bukti', ['donasi' => $donasi->id]) }}" method="POST"
@@ -120,6 +122,34 @@
                     </div>
                 </form>
             @endif
+        </div>
+    @endif
+    @if ($metode === 'gateway')
+        @php
+            $response = json_decode($donasi->transaksi->response);
+        @endphp
+        <div class="bg-white rounded-lg border border-gray-200 mb-6">
+            <h2 class="font-semibold text-xl p-6">Rekening Pembayaran</h2>
+            <dl class="border-b border-gray-100">
+                <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                    <dt class="text-sm leading-5 font-medium text-gray-500">
+                        Virtual Account
+                    </dt>
+                    <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
+                        {{ $response->va_numbers[0]->va_number ?? '-' }}
+                    </dd>
+                </div>
+            </dl>
+            <dl class="border-b border-gray-100">
+                <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                    <dt class="text-sm leading-5 font-medium text-gray-500">
+                        Bank
+                    </dt>
+                    <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2 uppercase">
+                        {{ $response->va_numbers[0]->bank ?? '-' }}
+                    </dd>
+                </div>
+            </dl>
         </div>
     @endif
 @endsection

@@ -13,6 +13,56 @@
 @endsection
 
 @section('body')
+    @if ($metode === 'tunai')
+        <p>Silahkan konfirmasi secara manual ke pihak penggalang dana.</p>
+    @endif
+    @if ($metode === 'transfer')
+        <div class="bg-white rounded-lg border border-gray-200 mb-6">
+            <h2 class="font-semibold text-xl p-6">Rekening Pembayaran</h2>
+            <dl class="border-b border-gray-100">
+                <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                    <dt class="text-sm leading-5 font-medium text-gray-500">
+                        Nama
+                    </dt>
+                    <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
+                        {{ $rekening->nama ?? '-' }}
+                    </dd>
+                </div>
+            </dl>
+            <dl class="border-b border-gray-100">
+                <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                    <dt class="text-sm leading-5 font-medium text-gray-500">
+                        Rekening
+                    </dt>
+                    <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
+                        {{ $rekening->nomor ?? '-' }}
+                    </dd>
+                </div>
+            </dl>
+            <dl class="border-b border-gray-100">
+                <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                    <dt class="text-sm leading-5 font-medium text-gray-500">
+                        Bank
+                    </dt>
+                    <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
+                        {{ $rekening->bank ?? '-' }}
+                    </dd>
+                </div>
+            </dl>
+            <dl>
+                <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                    <dt class="text-sm leading-5 font-medium text-gray-500">
+                        Bukti Pembayaran
+                    </dt>
+                    <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
+                        <a class="text-indigo-500 underline" href="{{ asset('storage/' . $rekening->bukti) }}">
+                            {{ $rekening->bukti ?? '-' }}
+                        </a>
+                    </dd>
+                </div>
+            </dl>
+        </div>
+    @endif
     <div class="bg-white rounded-lg border border-gray-200">
         <h2 class="font-semibold text-xl p-6">Detail Donasi</h2>
         <dl class="border-b border-gray-100">

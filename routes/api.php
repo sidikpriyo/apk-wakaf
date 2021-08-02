@@ -14,6 +14,4 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::post('/notifikasi', [\App\Http\Controllers\API\NotifikasiPembayaranController::class, 'api'])->name('notifikasi.api');

@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\Models\DonasiTransaksi;
 use App\Models\MetodePembayaran;
 use App\Models\Rekening;
 use App\Models\RekeningDonasi;
@@ -12,6 +13,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 
 class DonasiJobs implements ShouldQueue
@@ -90,24 +92,69 @@ class DonasiJobs implements ShouldQueue
     private function pembayaranVirtualAccount($donasi_id, $nominal, $bank)
     {
         try {
+            $url = "https://api.sandbox.midtrans.com/v2/charge";
+            $payload = [];
             switch ($bank) {
                 case 'bca':
-                    # code...
+                    $payload = [
+                        "payment_type" => "bank_transfer",
+                        "transaction_details" =>  [
+                            "order_id" => $donasi_id,
+                            "gross_amount" => $nominal
+                        ],
+                        "bank_transfer" => [
+                            "bank" => "bca"
+                        ]
+                    ];
                     break;
                 case 'bri':
-                    # code...
+                    $payload = [
+                        "payment_type" => "bank_transfer",
+                        "transaction_details" =>  [
+                            "order_id" => $donasi_id,
+                            "gross_amount" => $nominal
+                        ],
+                        "bank_transfer" => [
+                            "bank" => "bca"
+                        ]
+                    ];
                     break;
                 case 'bni':
-                    # code...
+                    $payload = [
+                        "payment_type" => "bank_transfer",
+                        "transaction_details" =>  [
+                            "order_id" => $donasi_id,
+                            "gross_amount" => $nominal
+                        ],
+                        "bank_transfer" => [
+                            "bank" => "bca"
+                        ]
+                    ];
                     break;
                 case 'mandiri':
-                    # code...
+                    $payload = [
+                        "payment_type" => "echannel",
+                        "transaction_details" => [
+                            "order_id" => $donasi_id,
+                            "gross_amount" => $nominal
+                        ]
+                    ];
                     break;
 
                 default:
                     # code...
                     break;
             }
+
+            $reponse = Http::acceptJson()->withHeaders([
+                'Authorization' => 'Basic ' . base64_encode(config('app.mitrans')),
+                'Content-Type' => 'application/json'
+            ])->post($url, $payload);
+
+            DonasiTransaksi::create([
+                'donasi_id' => $donasi_id,
+                'response' => $reponse->body()
+            ]);
         } catch (\Throwable $th) {
             throw $th;
         }

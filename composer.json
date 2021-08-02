@@ -14,7 +14,8 @@
         "laravel/framework": "^8.12",
         "laravel/tinker": "^2.5",
         "livewire/livewire": "^2.5",
-        "mediconesystems/livewire-datatables": "^0.5.1"
+        "mediconesystems/livewire-datatables": "^0.5.1",
+        "midtrans/midtrans-php": "^2.4"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
