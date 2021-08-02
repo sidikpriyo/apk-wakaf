@@ -2,6 +2,14 @@
 
 Sistem penggalangan dana sosial untuk pimpinan wilayah muhammadiyah daerah istimewa yogyakarta menggunakan payment gateway sebagai metode pembayaran non-tunai.
 
+User dan password:
+
+```
+pengelola@wakaf.id : rahasia
+lembaga@wakaf.id : rahasia
+donatur@wakaf.id : rahasia
+```
+
 ## PHP Dependencies
 
 - laravel/laravel
