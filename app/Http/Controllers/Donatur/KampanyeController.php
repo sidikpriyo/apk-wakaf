@@ -7,16 +7,29 @@ use App\Http\Controllers\Controller;
 use App\Jobs\DonasiJobs;
 use App\Models\Donasi;
 use App\Models\Kampanye;
+use App\Models\Kategori;
 use App\Models\MetodePembayaran;
 use Illuminate\Http\Request;
 
 class KampanyeController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $kampanye = Kampanye::aktif()->paginate(6);
+        //Init
+        $kategori_id = $request->get('kategori');
+        $search = $request->get('search');
+
+        $kategori = Kategori::get(['id', 'nama']);
+        $kampanye = Kampanye::when($kategori_id, function ($query) use ($kategori_id) {
+            $query->where('kategori_id', $kategori_id);
+        })->when($search, function ($query) use ($search) {
+            $query->where('nama', 'LIKE', "%" . $search . "%");
+        })->aktif()->paginate(6);
+
         return view('donatur.kampanye.index', [
-            'kampanye' => $kampanye
+            'kampanye' => $kampanye,
+            'search' => $search,
+            'kategori' => $kategori,
         ]);
     }
 

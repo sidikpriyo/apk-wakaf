@@ -15,8 +15,8 @@
 
 @section('body')
     <div class="flex flex-col items-start col-span-12 overflow-hidden shadow-sm rounded-xl md:col-span-6 lg:col-span-4">
-        <div class="block transition duration-200 ease-out transform hover:scale-110">
-            <img class="object-cover w-full shadow-sm max-h-56" src="{{ asset('storage/' . $kampanye->gambar) }}">
+        <div class="block transition duration-200 ease-out transform hover:scale-110 max-h-56">
+            <img class="object-cover w-full shadow-sm" src="{{ asset('storage/' . $kampanye->gambar) }}">
         </div>
         <div
             class="relative flex flex-col items-start px-6 bg-white border border-t-0 border-gray-200 py-7 rounded-b-2xl w-full">

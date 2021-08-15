@@ -61,6 +61,10 @@ class TabelKampanye extends LivewireDatatable
                 return "Rp" . number_format($terkumpul);
             })->label('Terkumpul')->filterable(),
 
+            NumberColumn::callback('dicairkan', function ($dicairkan) {
+                return "Rp" . number_format($dicairkan);
+            })->label('Dicairkan')->filterable(),
+
             DateColumn::name('tanggal_berakhir')->label('Berakhir')->filterable()
         ];
     }

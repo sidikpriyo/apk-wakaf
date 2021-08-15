@@ -22,6 +22,7 @@
     @include('layouts.home.navigation')
     @yield('body')
     @include('layouts.home.footer')
+    @stack('scripts')
 </body>
 
 </html>

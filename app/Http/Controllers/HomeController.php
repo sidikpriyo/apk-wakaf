@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kampanye;
-use App\Models\MetodePembayaran;
+use App\Models\Kategori;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -11,10 +11,21 @@ class HomeController extends Controller
 {
     public function home(Request $request)
     {
-        $kampanye = Kampanye::aktif()->paginate(6);
+        //Init
+        $kategori_id = $request->get('kategori');
+        $search = $request->get('search');
+
+        $kategori = Kategori::get(['id', 'nama']);
+        $kampanye = Kampanye::when($kategori_id, function ($query) use ($kategori_id) {
+            $query->where('kategori_id', $kategori_id);
+        })->when($search, function ($query) use ($search) {
+            $query->where('nama', 'LIKE', "%" . $search . "%");
+        })->aktif()->paginate(6);
 
         return view('home.index', [
-            'kampanye' => $kampanye
+            'kampanye' => $kampanye,
+            'kategori' => $kategori,
+            'search' => $search
         ]);
     }
 
