@@ -5,10 +5,12 @@ namespace App\Http\Controllers\Donatur;
 use App\Events\DonasiEvent;
 use App\Http\Controllers\Controller;
 use App\Jobs\DonasiJobs;
+use App\Jobs\RiwayatKunjunganJobs;
 use App\Models\Donasi;
 use App\Models\Kampanye;
 use App\Models\Kategori;
 use App\Models\MetodePembayaran;
+use App\Models\Riwayat;
 use Illuminate\Http\Request;
 
 class KampanyeController extends Controller
@@ -20,16 +22,16 @@ class KampanyeController extends Controller
         $search = $request->get('search');
 
         $kategori = Kategori::get(['id', 'nama']);
-        $kampanye = Kampanye::when($kategori_id, function ($query) use ($kategori_id) {
-            $query->where('kategori_id', $kategori_id);
-        })->when($search, function ($query) use ($search) {
-            $query->where('nama', 'LIKE', "%" . $search . "%");
-        })->aktif()->paginate(6);
+
+        $kampanye = $this->getKampanye($kategori_id, $search);
+        $rekomendasi = $this->getRekomendasiKampanye(auth()->id());
 
         return view('donatur.kampanye.index', [
+            'rekomendasi' => $rekomendasi,
             'kampanye' => $kampanye,
-            'search' => $search,
             'kategori' => $kategori,
+            'search' => $search,
+            'kategori_id' => $kategori_id,
         ]);
     }
 
@@ -40,6 +42,8 @@ class KampanyeController extends Controller
         }])->withCount(['donasi' => function ($query) {
             $query->whereNotNull('completed_at');
         }])->findOrFail($id);
+
+        RiwayatKunjunganJobs::dispatch(auth()->id(), $kampanye->kategori_id);
 
         return view('donatur.kampanye.show', [
             'kampanye' => $kampanye
@@ -89,5 +93,21 @@ class KampanyeController extends Controller
         DonasiJobs::dispatch($donasi);
 
         return redirect()->route('donatur-donasi.show', ['donasi' => $donasi->id]);
+    }
+
+
+    private function getKampanye($kategori_id, $search)
+    {
+        return Kampanye::when($kategori_id, function ($query) use ($kategori_id) {
+            $query->where('kategori_id', $kategori_id);
+        })->when($search, function ($query) use ($search) {
+            $query->where('nama', 'LIKE', "%" . $search . "%");
+        })->aktif()->paginate(6);
+    }
+
+    private function getRekomendasiKampanye($user_id)
+    {
+        $kategori_rekomendasi_id = Riwayat::where('donatur_id', $user_id)->orderBy('donasi', 'desc')->orderBy('lihat', 'desc')->value('kategori_id');
+        return Kampanye::inRandomOrder()->where('kategori_id', $kategori_rekomendasi_id)->aktif()->limit(2)->paginate();
     }
 }
