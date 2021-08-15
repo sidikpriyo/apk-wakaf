@@ -7,7 +7,10 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\KampanyeRequest;
 use App\Models\Kampanye;
 use App\Models\Kategori;
+use App\Models\Laporan;
+use App\Models\Pencairan;
 use App\Models\User;
+use Exception;
 use Illuminate\Http\Request;
 
 class KampanyeController extends Controller
@@ -132,6 +135,44 @@ class KampanyeController extends Controller
         }
 
         $kampanye->delete();
+
+        return redirect()->route('lembaga-kampanye.index');
+    }
+
+    public function pencairan(Kampanye $kampanye)
+    {
+
+        if ($kampanye->dicairkan >= $kampanye->terkumpul) {
+            throw new Exception("Tidak ada dana yang perlu dicairkan");
+        }
+
+        $count = Pencairan::where('kampanye_id', $kampanye->id)->menunggu()->count();
+        if ($count > 0) {
+            throw new Exception("Pengajuan pencairan masih dalam proses");
+        }
+
+        $nominal = $kampanye->terkumpul - $kampanye->dicairkan;
+        Pencairan::create([
+            'kampanye_id' => $kampanye->id,
+            'nominal' => $nominal
+        ]);
+
+        return redirect()->back();
+    }
+
+    public function laporan(Kampanye $kampanye)
+    {
+        return view('lembaga.kampanye.laporan', [
+            'kampanye' => $kampanye
+        ]);
+    }
+
+    public function storeLaporan(Kampanye $kampanye, Request $request)
+    {
+        Laporan::create([
+            'kampanye_id' => $kampanye->id,
+            'body' => $request->get('body')
+        ]);
 
         return redirect()->route('lembaga-kampanye.index');
     }

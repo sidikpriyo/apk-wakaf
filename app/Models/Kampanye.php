@@ -14,6 +14,11 @@ class Kampanye extends Model
 
     protected $guarded = [];
 
+    public function laporan()
+    {
+        return $this->hasMany(Laporan::class, 'kampanye_id');
+    }
+
     public function lembaga()
     {
         return $this->belongsTo(User::class, 'lembaga_id');

@@ -1,0 +1,41 @@
+@extends('layouts.dashboard')
+
+@section('sidebar-title')
+    Kampanye
+@endsection
+
+@section('sidebar-body')
+    <ul>
+        <li class="mb-2 block text-sm text-gray-700 py-1.5 px-2 mx-4 hover:bg-gray-100 rounded">
+            <a href="{{ route('lembaga-kampanye.index') }}" aria-current="page">Beranda</a>
+        </li>
+    </ul>
+@endsection
+
+@section('body')
+    <div class="bg-white rounded-lg border border-gray-200 p-6">
+        <h2 class="font-semibold text-xl mb-6">Tambah Laporan</h2>
+
+        <form action="{{ route('lembaga-kampanye.laporan', ['kampanye' => $kampanye->id]) }}" method="POST">
+            @csrf
+            <div class="mt-4">
+                <x-label :value="__('Kampanye')" />
+                <p class="mt-1">{{ $kampanye->nama }}</p>
+            </div>
+            <div class="mt-4">
+                <x-label for="deskripsi" :value="__('Deskripsi')" />
+
+                <x-textarea id="deskripsi" class="block mt-1 w-full border border-gray-200 p-1" type="text" name="body"
+                    required />
+            </div>
+
+            <div class="mt-6">
+                <button
+                    class="focus:ring-2 focus:ring-offset-2 focus:ring-blue-600 focus:bg-blue-800 focus:outline-none w-full sm:w-auto bg-blue-700 transition duration-150 ease-in-out hover:bg-blue-600 rounded text-white px-8 py-3 text-sm"
+                    type="submit">
+                    {{ __('Tambah Laporan') }}
+                </button>
+            </div>
+        </form>
+    </div>
+@endsection

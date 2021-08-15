@@ -119,10 +119,19 @@
                 </form>
             </div>
         @else
-            <div class="flex items-center space-x-1 justify-start p-6">
+            <div class="flex items-center space-x-1 justify-between p-6">
                 <a href="{{ route('lembaga-kampanye.pencairan', ['kampanye' => $kampanye->id]) }}"
                     class="flex items-center space-x-2 px-3 border border-green-400 rounded-md bg-white text-green-500 text-xs leading-4 font-medium uppercase tracking-wider hover:bg-green-200 focus:outline-none">
-                    <span>Ajukan Pencairan</span>
+                    <span>Pencairan</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current h-5 w-5 m-2" fill="none"
+                        viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                </a>
+                <a href="{{ route('lembaga-kampanye.laporan', ['kampanye' => $kampanye->id]) }}"
+                    class="flex items-center space-x-2 px-3 border border-blue-400 rounded-md bg-white text-blue-500 text-xs leading-4 font-medium uppercase tracking-wider hover:bg-blue-200 focus:outline-none">
+                    <span>Laporan</span>
                     <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current h-5 w-5 m-2" fill="none"
                         viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"

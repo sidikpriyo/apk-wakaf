@@ -77,6 +77,15 @@
         <p class="mt-2 text-sm text-gray-500">
             {{ $kampanye->deskripsi ?? '-' }}
         </p>
+
+        @if (count($kampanye->laporan) > 0)
+            <p class="font-semibold mt-4 text-sm text-gray-700 mb-2">Laporan:</p>
+            <ul class="list-disc ml-5 text-gray-600 text-sm">
+                @foreach ($kampanye->laporan as $item)
+                    <li>{{ $item->body }} ({{ $item->created_at }})</li>
+                @endforeach
+            </ul>
+        @endif
     </div>
 
     <div class="mt-8 border border-gray-200 rounded-lg bg-white px-6 py-7">

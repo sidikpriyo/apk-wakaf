@@ -61,7 +61,9 @@ Route::prefix('lembaga')->middleware(['auth', 'role:lembaga'])->group(function (
     Route::resource('/profil', \App\Http\Controllers\Lembaga\LembagaController::class)->names('lembaga-profil')->only(['index', 'edit', 'update', 'store']);
 
     Route::get('/profil/{profil}/lembaga/{lembaga}', [\App\Http\Controllers\Lembaga\LembagaController::class, 'lembaga'])->name('lembaga-profil.lembaga');
-    Route::get('/kampanye/{kampanye}/pencairan', [\App\Http\Controllers\Lembaga\LembagaController::class, 'pencairan'])->name('lembaga-kampanye.pencairan');
+    Route::get('/kampanye/{kampanye}/pencairan', [\App\Http\Controllers\Lembaga\KampanyeController::class, 'pencairan'])->name('lembaga-kampanye.pencairan');
+    Route::get('/kampanye/{kampanye}/laporan', [\App\Http\Controllers\Lembaga\KampanyeController::class, 'laporan'])->name('lembaga-kampanye.laporan');
+    Route::post('/kampanye/{kampanye}/laporan', [\App\Http\Controllers\Lembaga\KampanyeController::class, 'storeLaporan'])->name('lembaga-kampanye.laporan');
 });
 
 require __DIR__ . '/auth.php';
