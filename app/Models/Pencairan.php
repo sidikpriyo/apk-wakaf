@@ -18,4 +18,9 @@ class Pencairan extends Model
     {
         return $query->whereNull('completed_at');
     }
+
+    public function kampanye()
+    {
+        return $this->belongsTo(Kampanye::class, 'kampanye_id');
+    }
 }
