@@ -4,8 +4,11 @@ namespace App\Http\Controllers\Lembaga;
 
 use App\Http\Controllers\Controller;
 use App\Models\Bank;
+use App\Models\Kampanye;
 use App\Models\Lembaga;
+use App\Models\Pencairan;
 use App\Models\User;
+use Exception;
 use Illuminate\Http\Request;
 
 class LembagaController extends Controller
@@ -54,5 +57,26 @@ class LembagaController extends Controller
             'lembaga' => $lembaga,
             'bank' => $bank,
         ]);
+    }
+
+    public function pencairan(Kampanye $kampanye)
+    {
+
+        if ($kampanye->dicairkan >= $kampanye->terkumpul) {
+            throw new Exception("Tidak ada dana yang perlu dicairkan");
+        }
+
+        $count = Pencairan::where('kampanye_id', $kampanye->id)->menunggu()->count();
+        if ($count > 0) {
+            throw new Exception("Pengajuan pencairan masih dalam proses");
+        }
+
+        $nominal = $kampanye->terkumpul - $kampanye->dicairkan;
+        Pencairan::create([
+            'kampanye_id' => $kampanye->id,
+            'nominal' => $nominal
+        ]);
+
+        return redirect()->back();
     }
 }

@@ -61,6 +61,7 @@ Route::prefix('lembaga')->middleware(['auth', 'role:lembaga'])->group(function (
     Route::resource('/profil', \App\Http\Controllers\Lembaga\LembagaController::class)->names('lembaga-profil')->only(['index', 'edit', 'update', 'store']);
 
     Route::get('/profil/{profil}/lembaga/{lembaga}', [\App\Http\Controllers\Lembaga\LembagaController::class, 'lembaga'])->name('lembaga-profil.lembaga');
+    Route::get('/kampanye/{kampanye}/pencairan', [\App\Http\Controllers\Lembaga\LembagaController::class, 'pencairan'])->name('lembaga-kampanye.pencairan');
 });
 
 require __DIR__ . '/auth.php';
