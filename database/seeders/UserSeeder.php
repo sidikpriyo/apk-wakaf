@@ -32,6 +32,11 @@ class UserSeeder extends Seeder
                 'email' => 'donatur@wakaf.id',
                 'name' => 'Nama Donatur',
                 'role' => 'donatur'
+            ],
+            [
+                'email' => 'damas@wakaf.id',
+                'name' => 'Damas Amirul Karim',
+                'role' => 'donatur'
             ]
         ];
 

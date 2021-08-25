@@ -17,16 +17,18 @@ class RiwayatDonasiJobs implements ShouldQueue
 
     private $donatur_id;
     private $kategori_id;
+    private $kampanye_id;
 
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct($donatur_id, $kategori_id)
+    public function __construct($donatur_id, $kategori_id, $kampanye_id)
     {
         $this->donatur_id = $donatur_id;
         $this->kategori_id = $kategori_id;
+        $this->kampanye_id = $kampanye_id;
     }
 
     /**
@@ -40,6 +42,7 @@ class RiwayatDonasiJobs implements ShouldQueue
             $riwayat = Riwayat::firstOrCreate([
                 'donatur_id' => $this->donatur_id,
                 'kategori_id' => $this->kategori_id,
+                'kampanye_id' => $this->kampanye_id,
             ]);
 
             $riwayat->increment('donasi');

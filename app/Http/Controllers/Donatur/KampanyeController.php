@@ -15,6 +15,12 @@ use Illuminate\Http\Request;
 
 class KampanyeController extends Controller
 {
+
+    public function riwayat()
+    {
+        return view('donatur.kampanye.riwayat');
+    }
+
     public function index(Request $request)
     {
         //Init
@@ -43,7 +49,7 @@ class KampanyeController extends Controller
             $query->whereNotNull('completed_at');
         }])->findOrFail($id);
 
-        RiwayatKunjunganJobs::dispatch(auth()->id(), $kampanye->kategori_id);
+        RiwayatKunjunganJobs::dispatch(auth()->id(), $kampanye->kategori_id, $kampanye->id);
 
         return view('donatur.kampanye.show', [
             'kampanye' => $kampanye
