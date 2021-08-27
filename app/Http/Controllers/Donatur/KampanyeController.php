@@ -113,7 +113,7 @@ class KampanyeController extends Controller
 
     private function getRekomendasiKampanye($user_id)
     {
-        $kategori_rekomendasi_id = Riwayat::where('donatur_id', $user_id)->orderBy('donasi', 'desc')->orderBy('lihat', 'desc')->value('kategori_id');
+        $kategori_rekomendasi_id = Riwayat::selectRaw('sum(donasi) as donasi, sum(lihat) as lihat, kategori_id')->where('donatur_id', $user_id)->orderBy('donasi', 'desc')->orderBy('lihat', 'desc')->groupBy('kategori_id')->value('kategori_id');
         return Kampanye::inRandomOrder()->where('kategori_id', $kategori_rekomendasi_id)->aktif()->paginate(2);
     }
 }
